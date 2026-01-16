@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Meiryo', 'メイリオ', '游ゴシック', 'YuGothic', 'Hiragino Kaku Gothic ProN', sans-serif;
+}

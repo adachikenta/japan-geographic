@@ -1,0 +1,40 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Next.js
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
+# Cloudflare Workers
+.wrangler/
+.dev.vars
+dist/
+
+# Build outputs
+build/
+.cache/
+
+# Environment variables
+.env
+.env*.local
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log

@@ -1,0 +1,31 @@
+name = "japan-geographic-backend"
+main = "src/index.ts"
+compatibility_date = "2025-01-22"
+
+# Workers ログ設定
+[observability]
+enabled = true
+
+# ローカル開発サーバー設定
+[dev]
+port = 8787
+
+# 環境変数 (ローカル開発用)
+[vars]
+ENVIRONMENT = "development"
+
+# D1 データベースバインディング (将来的に使用)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "japan-geographic-db"
+# database_id = "your-database-id"
+
+# R2 ストレージバインディング (将来的に使用)
+# [[r2_buckets]]
+# binding = "BUCKET"
+# bucket_name = "japan-geographic-data"
+
+# KV ネームスペースバインディング (将来的に使用)
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "your-kv-namespace-id"

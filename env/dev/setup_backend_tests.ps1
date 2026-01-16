@@ -1,0 +1,114 @@
+$ErrorActionPreference = "Stop"
+Write-Host "`nSetting up backend TypeScript test environment..." -ForegroundColor Cyan
+
+# Check if backend directory exists
+$backendPath = ".\backend"
+if (-not (Test-Path $backendPath)) {
+    Write-Host "Error: Backend directory not found at $backendPath" -ForegroundColor Red
+    Write-Host "Please run _setup.bat first to create the project structure." -ForegroundColor Yellow
+    exit 1
+}
+
+Push-Location $backendPath
+try {
+    Write-Host "Installing test dependencies for backend..." -ForegroundColor Yellow
+
+    # Install Vitest for backend testing
+    pnpm add -D vitest
+    pnpm add -D @cloudflare/vitest-pool-workers
+
+    Write-Host "Backend test dependencies installed successfully." -ForegroundColor Green
+
+    # Create vitest.config.ts for backend
+    Write-Host "Creating backend vitest.config.ts..." -ForegroundColor Yellow
+    $vitestConfig = @"
+import { defineWorkersConfig } from '@cloudflare/vitest-pool-workers/config';
+
+export default defineWorkersConfig({
+  test: {
+    poolOptions: {
+      workers: {
+        wrangler: { configPath: './wrangler.toml' },
+      },
+    },
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+    },
+  },
+});
+"@
+    Set-Content -Path "vitest.config.ts" -Value $vitestConfig
+    Write-Host "Created backend vitest.config.ts" -ForegroundColor Green
+
+    # Create test directory
+    Write-Host "Creating backend test directory..." -ForegroundColor Yellow
+    New-Item -Path "test" -ItemType Directory -Force | Out-Null
+
+    # Create example API test
+    $exampleTest = @"
+import { describe, it, expect } from 'vitest';
+import app from '../src/index';
+
+describe('API Endpoints', () => {
+  it('should return health check', async () => {
+    const req = new Request('http://localhost/');
+    const res = await app.fetch(req);
+    const data = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(data).toHaveProperty('status', 'ok');
+  });
+
+  it('should return prefectures endpoint', async () => {
+    const req = new Request('http://localhost/api/prefectures');
+    const res = await app.fetch(req);
+
+    expect(res.status).toBe(200);
+  });
+});
+
+describe('GeoJSON Endpoints', () => {
+  it('should return geo data endpoint', async () => {
+    const req = new Request('http://localhost/api/geo/test');
+    const res = await app.fetch(req);
+
+    expect(res.status).toBe(200);
+  });
+});
+"@
+    Set-Content -Path "test/api.test.ts" -Value $exampleTest
+    Write-Host "Created test/api.test.ts" -ForegroundColor Green
+
+    # Update package.json scripts
+    Write-Host "Updating backend package.json scripts..." -ForegroundColor Yellow
+    $packageJsonPath = "package.json"
+    if (Test-Path $packageJsonPath) {
+        $packageJson = Get-Content $packageJsonPath -Raw | ConvertFrom-Json
+
+        # Add test scripts
+        if (-not $packageJson.scripts.test) {
+            $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test" -Value "vitest" -Force
+        }
+        if (-not $packageJson.scripts."test:coverage") {
+            $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:coverage" -Value "vitest --coverage" -Force
+        }
+
+        $packageJson | ConvertTo-Json -Depth 10 | Set-Content $packageJsonPath
+        Write-Host "Updated backend package.json with test scripts" -ForegroundColor Green
+    }
+
+    Write-Host "`nBackend test environment setup completed!" -ForegroundColor Green
+    Write-Host "`nAvailable backend test commands:" -ForegroundColor Cyan
+    Write-Host "  pnpm test          - Run backend tests" -ForegroundColor White
+    Write-Host "  pnpm test:coverage - Run tests with coverage" -ForegroundColor White
+    Write-Host "  pnpm typecheck     - Run TypeScript type checking" -ForegroundColor White
+
+} catch {
+    Write-Host "Error setting up backend test environment: $_" -ForegroundColor Red
+    Write-Host "Stack trace: $($_.ScriptStackTrace)" -ForegroundColor Red
+    Pop-Location
+    exit 1
+} finally {
+    Pop-Location
+}
