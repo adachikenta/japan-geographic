@@ -1,0 +1,36 @@
+{
+  "version": 8,
+  "name": "都市域オーバーレイ",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "urban-geojson": {
+      "type": "geojson",
+      "data": "http://localhost:3001/urban-areas.json"
+    }
+  },
+  "layers": [
+    {
+      "id": "urban-overlay-fill",
+      "type": "fill",
+      "source": "urban-geojson",
+      "minzoom": 0,
+      "maxzoom": 22,
+      "paint": {
+        "fill-color": "#e0c0c0",
+        "fill-opacity": 0.7
+      }
+    },
+    {
+      "id": "urban-overlay-outline",
+      "type": "line",
+      "source": "urban-geojson",
+      "minzoom": 8,
+      "maxzoom": 22,
+      "paint": {
+        "line-color": "#b09090",
+        "line-width": 0.5,
+        "line-opacity": 0.5
+      }
+    }
+  ]
+}

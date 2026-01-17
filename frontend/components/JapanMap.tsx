@@ -25,15 +25,22 @@ const MAP_STYLES = {
 // オーバーレイレイヤー定義
 const OVERLAY_LAYERS = {
   none: { name: 'なし' },
-  landcover1: { name: '被覆 - OpenStreetMap', url: '/landcover-style.json' },
-  landcover2: { name: '被覆 - 国土数値情報', url: '/landcover2-style.json' },
-  landcover3: { name: '被覆 - ESA WorldCover', url: '/landcover3-style.json' },
-  landuse1: { name: '用途 - 国土数値情報（詳細）', url: '/landuse1-style.json' },
-  landuse2: { name: '用途 - 国土数値情報（簡易）', url: '/landuse2-style.json' },
-  landuse3: { name: '用途 - 都市計画基礎調査', url: '/landuse3-style.json' },
+  landcover1: { name: '被覆 - OpenStreetMap', url: '/landcover-style.json', scale: '～30km' },
+  landcover2: { name: '被覆 - 国土数値情報', url: '/landcover2-style.json', scale: '～30km' },
+  landcover3: { name: '被覆 - ESA WorldCover', url: '/landcover3-style.json', scale: '～30km' },
+  landuse1: { name: '用途 - 国土数値情報（詳細）', url: '/landuse1-style.json', scale: '～50km, 100km～' },
+  landuse2: { name: '用途 - 国土数値情報（簡易）', url: '/landuse2-style.json', scale: '～50km, 100km～' },
+  landuse3: { name: '用途 - 都市計画基礎調査', url: '/landuse3-style.json', scale: '～1km' },
 } as const;
 
 type OverlayType = keyof typeof OVERLAY_LAYERS;
+
+// チェックボックスレイヤー定義（複数選択可能）
+const CHECKBOX_LAYERS = {
+  urban: { name: '都市域（簡易）', url: '/urban-overlay.json', scale: '100km以上', description: '市街地系（住宅+商業+工業）の統合表示' },
+} as const;
+
+type CheckboxLayerType = keyof typeof CHECKBOX_LAYERS;
 
 const prefectureBorderStyle: LayerProps = {
   id: 'prefecture-borders',
@@ -66,6 +73,9 @@ export default function JapanMap({ geojsonUrl, initialViewState }: JapanMapProps
   const [loading, setLoading] = useState(false);
   const [overlayLayer, setOverlayLayer] = useState<OverlayType>('none');
   const [showTerrain, setShowTerrain] = useState(false);
+  const [checkboxLayers, setCheckboxLayers] = useState<Set<CheckboxLayerType>>(new Set());
+  const [currentZoom, setCurrentZoom] = useState<number>(initialViewState?.zoom || 5);
+  const [showTileBoundaries, setShowTileBoundaries] = useState(false);
 
   // デフォルトの視点設定（日本全体）
   const defaultViewState = {
@@ -73,6 +83,22 @@ export default function JapanMap({ geojsonUrl, initialViewState }: JapanMapProps
     latitude: 37.0,
     zoom: 5,
   };
+
+  // ズームレベルの更新
+  const handleZoomChange = () => {
+    const map = mapRef.current?.getMap();
+    if (map) {
+      setCurrentZoom(map.getZoom());
+    }
+  };
+
+  // タイル境界表示の切り替え
+  useEffect(() => {
+    const map = mapRef.current?.getMap();
+    if (map) {
+      map.showTileBoundaries = showTileBoundaries;
+    }
+  }, [showTileBoundaries]);
 
   // GeoJSONデータの取得
   useEffect(() => {
@@ -221,6 +247,169 @@ export default function JapanMap({ geojsonUrl, initialViewState }: JapanMapProps
     }
   }, [overlayLayer]);
 
+  // チェックボックスレイヤーの管理
+  useEffect(() => {
+    const map = mapRef.current?.getMap();
+    if (!map || !map.isStyleLoaded()) {
+      console.log('Map not ready or style not loaded');
+      return;
+    }
+
+    console.log('Managing checkbox layers, current set:', Array.from(checkboxLayers));
+
+    // すべてのチェックボックスレイヤーを確認
+    const processLayers = async () => {
+      for (const layerKey of Object.keys(CHECKBOX_LAYERS)) {
+        const layer = CHECKBOX_LAYERS[layerKey as CheckboxLayerType];
+        const isEnabled = checkboxLayers.has(layerKey as CheckboxLayerType);
+        const vectorSourceId = `checkbox-${layerKey}-vector`;
+        const vectorFillLayerId = `${vectorSourceId}-fill`;
+        const vectorOutlineLayerId = `${vectorSourceId}-outline`;
+        const geojsonSourceId = `checkbox-${layerKey}-geojson`;
+        const geojsonFillLayerId = `${geojsonSourceId}-fill`;
+        const geojsonOutlineLayerId = `${geojsonSourceId}-outline`;
+
+        console.log(`Processing layer ${layerKey}, enabled: ${isEnabled}`);
+
+        if (isEnabled) {
+          // zoom 0-5用：ベクタータイルソース（低ズームレベルの粗いデータ）
+          if (!map.getSource(vectorSourceId)) {
+            console.log(`Adding vector tile source for zoom 0-5: ${vectorSourceId}`);
+            map.addSource(vectorSourceId, {
+              type: 'vector',
+              tiles: ['https://tile.openstreetmap.jp/data/planet/{z}/{x}/{y}.pbf'],
+              minzoom: 0,
+              maxzoom: 14
+            });
+          }
+
+          // zoom 6+用：静的GeoJSONソース（zoom=5のデータを固定表示）
+          if (!map.getSource(geojsonSourceId)) {
+            console.log(`Loading GeoJSON for high zoom: ${geojsonSourceId}`);
+            try {
+              const response = await fetch('/urban-areas-coarse.json');
+              const geojsonData = await response.json();
+              map.addSource(geojsonSourceId, {
+                type: 'geojson',
+                data: geojsonData
+              });
+              console.log(`  ✓ GeoJSON source loaded`);
+            } catch (error) {
+              console.error(`Failed to load GeoJSON for ${layerKey}:`, error);
+            }
+          }
+
+          // レイヤーを追加
+          const layers = map.getStyle().layers;
+          const firstSymbolId = layers?.find((layer: any) => layer.type === 'symbol')?.id;
+
+          // zoom 0-5用：ベクタータイルレイヤー（粗い大きなポリゴン）
+          if (!map.getLayer(vectorFillLayerId)) {
+            console.log(`Adding vector layer for zoom 0-5: ${vectorFillLayerId}`);
+            map.addLayer({
+              id: vectorFillLayerId,
+              type: 'fill',
+              source: vectorSourceId,
+              'source-layer': 'landuse',
+              filter: ['in', 'class', 'residential', 'commercial', 'industrial'],
+              minzoom: 0,
+              maxzoom: 6,  // zoom 5まで表示
+              paint: {
+                'fill-color': '#e0c0c0',
+                'fill-opacity': 0.7
+              }
+            }, firstSymbolId);
+            console.log(`  ✓ Vector fill layer added (zoom 0-5)`);
+          }
+
+          if (!map.getLayer(vectorOutlineLayerId)) {
+            map.addLayer({
+              id: vectorOutlineLayerId,
+              type: 'line',
+              source: vectorSourceId,
+              'source-layer': 'landuse',
+              filter: ['in', 'class', 'residential', 'commercial', 'industrial'],
+              minzoom: 0,
+              maxzoom: 6,  // zoom 5まで表示
+              paint: {
+                'line-color': '#b09090',
+                'line-width': 0.5,
+                'line-opacity': 0.5
+              }
+            }, firstSymbolId);
+            console.log(`  ✓ Vector outline layer added (zoom 0-5)`);
+          }
+
+          // zoom 6+用：静的GeoJSONレイヤー（zoom=5データの固定表示）
+          if (!map.getLayer(geojsonFillLayerId)) {
+            console.log(`Adding GeoJSON layer for zoom 6+: ${geojsonFillLayerId}`);
+            map.addLayer({
+              id: geojsonFillLayerId,
+              type: 'fill',
+              source: geojsonSourceId,
+              minzoom: 6,  // zoom 6から表示（zoom=5の粗いデータを維持）
+              paint: {
+                'fill-color': '#e0c0c0',
+                'fill-opacity': 0.7
+              }
+            }, firstSymbolId);
+            console.log(`  ✓ GeoJSON fill layer added (zoom 6+)`);
+          }
+
+          if (!map.getLayer(geojsonOutlineLayerId)) {
+            map.addLayer({
+              id: geojsonOutlineLayerId,
+              type: 'line',
+              source: geojsonSourceId,
+              minzoom: 6,  // zoom 6から表示
+              paint: {
+                'line-color': '#b09090',
+                'line-width': 0.5,
+                'line-opacity': 0.5
+              }
+            }, firstSymbolId);
+            console.log(`  ✓ GeoJSON outline layer added (zoom 6+)`);
+          }
+
+          console.log(`Successfully added layers: ${layerKey}`);
+        } else {
+          // レイヤーを削除（ベクタータイル + GeoJSONの両方）
+          [vectorOutlineLayerId, vectorFillLayerId, geojsonOutlineLayerId, geojsonFillLayerId].forEach(layerId => {
+            if (map.getLayer(layerId)) {
+              console.log(`Removing layer: ${layerId}`);
+              map.removeLayer(layerId);
+            }
+          });
+
+          if (map.getSource(vectorSourceId)) {
+            console.log(`Removing source: ${vectorSourceId}`);
+            map.removeSource(vectorSourceId);
+          }
+
+          if (map.getSource(geojsonSourceId)) {
+            console.log(`Removing source: ${geojsonSourceId}`);
+            map.removeSource(geojsonSourceId);
+          }
+        }
+      }
+    };
+
+    processLayers();
+  }, [checkboxLayers]);
+
+  // チェックボックスレイヤーのトグル
+  const toggleCheckboxLayer = (layerKey: CheckboxLayerType) => {
+    setCheckboxLayers(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(layerKey)) {
+        newSet.delete(layerKey);
+      } else {
+        newSet.add(layerKey);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <div className="relative w-full h-full">
       {/* コントロールパネル */}
@@ -230,16 +419,40 @@ export default function JapanMap({ geojsonUrl, initialViewState }: JapanMapProps
           <div className="text-xs font-semibold text-gray-700 mb-2">土地被覆・土地利用</div>
           <div className="flex flex-col gap-1">
             {Object.entries(OVERLAY_LAYERS).map(([key, layer]) => (
-              <label key={key} className="flex items-center gap-2 cursor-pointer">
+              <label key={key} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 rounded p-1">
                 <input
                   type="radio"
                   name="overlay"
                   value={key}
                   checked={overlayLayer === key}
                   onChange={(e) => setOverlayLayer(e.target.value as OverlayType)}
-                  className="w-4 h-4 text-blue-500"
+                  className="w-4 h-4 text-blue-500 flex-shrink-0"
                 />
-                <span className="text-sm text-gray-700">{layer.name}</span>
+                <span className="text-sm text-gray-700 flex-1 min-w-0">{layer.name}</span>
+                {'scale' in layer && layer.scale && (
+                  <span className="text-xs text-gray-500 whitespace-nowrap flex-shrink-0 ml-1">{layer.scale}</span>
+                )}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* 追加レイヤー（チェックボックス） */}
+        <div className="bg-white rounded-lg shadow-md p-3">
+          <div className="text-xs font-semibold text-gray-700 mb-2">追加レイヤー</div>
+          <div className="flex flex-col gap-1">
+            {Object.entries(CHECKBOX_LAYERS).map(([key, layer]) => (
+              <label key={key} className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 rounded p-1">
+                <input
+                  type="checkbox"
+                  checked={checkboxLayers.has(key as CheckboxLayerType)}
+                  onChange={() => toggleCheckboxLayer(key as CheckboxLayerType)}
+                  className="w-4 h-4 text-blue-500 rounded flex-shrink-0"
+                />
+                <span className="text-sm text-gray-700 flex-1 min-w-0">{layer.name}</span>
+                {'scale' in layer && layer.scale && (
+                  <span className="text-xs text-gray-500 whitespace-nowrap flex-shrink-0 ml-1">{layer.scale}</span>
+                )}
               </label>
             ))}
           </div>
@@ -257,6 +470,25 @@ export default function JapanMap({ geojsonUrl, initialViewState }: JapanMapProps
             />
             <span className="text-sm text-gray-700">標高表現</span>
           </label>
+        </div>
+
+        {/* デバッグ表示 */}
+        <div className="bg-white rounded-lg shadow-md p-3">
+          <div className="text-xs font-semibold text-gray-700 mb-2">デバッグ</div>
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={showTileBoundaries}
+              onChange={(e) => setShowTileBoundaries(e.target.checked)}
+              className="w-4 h-4 text-blue-500 rounded"
+            />
+            <span className="text-sm text-gray-700">タイル境界表示</span>
+          </label>
+          {showTileBoundaries && (
+            <div className="text-xs text-gray-500 mt-1">
+              各タイルのzoom levelが表示されます
+            </div>
+          )}
         </div>
       </div>
 
@@ -282,7 +514,40 @@ export default function JapanMap({ geojsonUrl, initialViewState }: JapanMapProps
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAP_STYLES['standard'].url}
         attributionControl={true}
+        onZoom={handleZoomChange}
+        onMove={handleZoomChange}
+        onClick={(e) => {
+          const map = mapRef.current?.getMap();
+          if (map) {
+            const features = map.queryRenderedFeatures(e.point);
+            console.log('=== Clicked features ===');
+            console.log('Lat/Lon:', e.lngLat);
+            console.log('Features:', features.map((f: any) => ({
+              layer: f.layer.id,
+              sourceLayer: f.sourceLayer,
+              properties: f.properties
+            })));
+          }
+        }}
       >
+        {/* ズームレベル表示 */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '30px',
+            right: '10px',
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            padding: '8px 12px',
+            borderRadius: '4px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+            fontFamily: 'monospace',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            zIndex: 1,
+          }}
+        >
+          Zoom: {currentZoom.toFixed(2)}
+        </div>
         {/* ナビゲーションコントロール */}
         <NavigationControl position="top-right" />
 
