@@ -1,11 +1,11 @@
 $ErrorActionPreference = "Stop"
-Write-Host "`nSetting up TypeScript test environment..." -ForegroundColor Cyan
+Write-Host "`nSetting up frontend test environment..." -ForegroundColor Cyan
 
-# Check if frontend directory exists
+# Verify frontend directory
 $frontendPath = ".\frontend"
 if (-not (Test-Path $frontendPath)) {
     Write-Host "Error: Frontend directory not found at $frontendPath" -ForegroundColor Red
-    Write-Host "Please run _setup.bat first to create the project structure." -ForegroundColor Yellow
+    Write-Host "Please run _setup.bat first." -ForegroundColor Yellow
     exit 1
 }
 
@@ -14,184 +14,91 @@ try {
     Write-Host "Installing test dependencies..." -ForegroundColor Yellow
 
     # Install Vitest and testing utilities
-    Write-Host "Installing Vitest..." -ForegroundColor Yellow
     pnpm add -D vitest @vitest/ui
     pnpm add -D @testing-library/react @testing-library/jest-dom @testing-library/user-event
     pnpm add -D jsdom
 
     # Install Playwright for E2E testing
-    Write-Host "Installing Playwright..." -ForegroundColor Yellow
     pnpm add -D @playwright/test
     pnpm exec playwright install --with-deps
 
-    # Install MSW for API mocking (optional but recommended)
-    Write-Host "Installing MSW for API mocking..." -ForegroundColor Yellow
-    pnpm add -D msw
-
     Write-Host "Test dependencies installed successfully." -ForegroundColor Green
 
-    # Create vitest.config.ts
-    Write-Host "Creating vitest.config.ts..." -ForegroundColor Yellow
-    $vitestConfig = @"
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+    # Verify test configuration files exist
+    $requiredFiles = @(
+        "vitest.config.ts",
+        "vitest.setup.ts",
+        "playwright.config.ts"
+    )
 
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    environment: 'jsdom',
-    globals: true,
-    setupFiles: './vitest.setup.ts',
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        '.next/',
-        'out/',
-        '**/*.config.*',
-        '**/*.d.ts',
-      ],
-    },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './'),
-    },
-  },
-});
-"@
-    Set-Content -Path "vitest.config.ts" -Value $vitestConfig
-    Write-Host "Created vitest.config.ts" -ForegroundColor Green
+    $missingFiles = @()
+    foreach ($file in $requiredFiles) {
+        if (-not (Test-Path $file)) {
+            $missingFiles += $file
+        }
+    }
 
-    # Create vitest.setup.ts
-    Write-Host "Creating vitest.setup.ts..." -ForegroundColor Yellow
-    $vitestSetup = @"
-import '@testing-library/jest-dom';
-import { expect, afterEach } from 'vitest';
-import { cleanup } from '@testing-library/react';
+    if ($missingFiles.Count -gt 0) {
+        Write-Host "Warning: Missing test configuration files:" -ForegroundColor Yellow
+        foreach ($file in $missingFiles) {
+            Write-Host "  - $file" -ForegroundColor Yellow
+        }
+        Write-Host "Please ensure you have the latest code from Git." -ForegroundColor Yellow
+    }
 
-// Cleanup after each test case
-afterEach(() => {
-  cleanup();
-});
-"@
-    Set-Content -Path "vitest.setup.ts" -Value $vitestSetup
-    Write-Host "Created vitest.setup.ts" -ForegroundColor Green
+    # Verify test directories exist
+    if (-not (Test-Path "__tests__")) {
+        Write-Host "Warning: __tests__ directory not found" -ForegroundColor Yellow
+        Write-Host "Creating __tests__ directory..." -ForegroundColor Yellow
+        New-Item -Path "__tests__" -ItemType Directory -Force | Out-Null
+    }
 
-    # Create playwright.config.ts
-    Write-Host "Creating playwright.config.ts..." -ForegroundColor Yellow
-    $playwrightConfig = @"
-import { defineConfig, devices } from '@playwright/test';
+    if (-not (Test-Path "e2e")) {
+        Write-Host "Warning: e2e directory not found" -ForegroundColor Yellow
+        Write-Host "Creating e2e directory..." -ForegroundColor Yellow
+        New-Item -Path "e2e" -ItemType Directory -Force | Out-Null
+    }
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
-export default defineConfig({
-  testDir: './e2e',
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
-  use: {
-    baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry',
-  },
-
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-  ],
-
-  webServer: {
-    command: 'pnpm dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-  },
-});
-"@
-    Set-Content -Path "playwright.config.ts" -Value $playwrightConfig
-    Write-Host "Created playwright.config.ts" -ForegroundColor Green
-
-    # Create test directories
-    Write-Host "Creating test directory structure..." -ForegroundColor Yellow
-    New-Item -Path "__tests__" -ItemType Directory -Force | Out-Null
-    New-Item -Path "e2e" -ItemType Directory -Force | Out-Null
-
-    # Create example unit test
-    $exampleUnitTest = @"
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-
-// Example component test
-describe('Example Test', () => {
-  it('should render correctly', () => {
-    const { container } = render(<div>Hello World</div>);
-    expect(container.textContent).toBe('Hello World');
-  });
-});
-"@
-    Set-Content -Path "__tests__/example.test.tsx" -Value $exampleUnitTest
-    Write-Host "Created __tests__/example.test.tsx" -ForegroundColor Green
-
-    # Create example E2E test
-    $exampleE2ETest = @"
-import { test, expect } from '@playwright/test';
-
-test('homepage loads correctly', async ({ page }) => {
-  await page.goto('/');
-
-  // Add your assertions here
-  await expect(page).toHaveTitle(/Japan Geographic/);
-});
-"@
-    Set-Content -Path "e2e/example.spec.ts" -Value $exampleE2ETest
-    Write-Host "Created e2e/example.spec.ts" -ForegroundColor Green
-
-    # Update package.json scripts
-    Write-Host "Updating package.json scripts..." -ForegroundColor Yellow
+    # Update package.json scripts if needed
+    Write-Host "Verifying package.json test scripts..." -ForegroundColor Yellow
     $packageJsonPath = "package.json"
     if (Test-Path $packageJsonPath) {
         $packageJson = Get-Content $packageJsonPath -Raw | ConvertFrom-Json
 
-        # Add test scripts
-        if (-not $packageJson.scripts) {
-            $packageJson | Add-Member -MemberType NoteProperty -Name "scripts" -Value @{}
+        $scriptsToAdd = @{
+            "test" = "vitest run"
+            "test:ui" = "vitest --ui"
+            "test:watch" = "vitest"
+            "test:coverage" = "vitest run --coverage"
+            "test:e2e" = "playwright test"
+            "test:e2e:ui" = "playwright test --ui"
+            "type-check" = "tsc --noEmit"
         }
 
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test" -Value "vitest run" -Force
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:ui" -Value "vitest --ui" -Force
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:watch" -Value "vitest" -Force
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:coverage" -Value "vitest run --coverage" -Force
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:e2e" -Value "playwright test" -Force
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:e2e:ui" -Value "playwright test --ui" -Force
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "type-check" -Value "tsc --noEmit" -Force
+        $updated = $false
+        foreach ($script in $scriptsToAdd.GetEnumerator()) {
+            if (-not $packageJson.scripts.PSObject.Properties[$script.Key]) {
+                $packageJson.scripts | Add-Member -MemberType NoteProperty -Name $script.Key -Value $script.Value -Force
+                $updated = $true
+            }
+        }
 
-        $packageJson | ConvertTo-Json -Depth 10 | Set-Content $packageJsonPath
-        Write-Host "Updated package.json with test scripts" -ForegroundColor Green
+        if ($updated) {
+            $packageJson | ConvertTo-Json -Depth 10 | Set-Content $packageJsonPath
+            Write-Host "Updated package.json with test scripts" -ForegroundColor Green
+        } else {
+            Write-Host "All test scripts already present" -ForegroundColor Green
+        }
     }
 
-    Write-Host "`nTypeScript test environment setup completed!" -ForegroundColor Green
+    Write-Host "`nFrontend test environment setup completed!" -ForegroundColor Green
     Write-Host "`nAvailable test commands:" -ForegroundColor Cyan
-    Write-Host "  pnpm test          - Run unit tests with Vitest" -ForegroundColor White
+    Write-Host "  pnpm test          - Run unit tests" -ForegroundColor White
     Write-Host "  pnpm test:ui       - Run unit tests with UI" -ForegroundColor White
+    Write-Host "  pnpm test:watch    - Run unit tests in watch mode" -ForegroundColor White
     Write-Host "  pnpm test:coverage - Run tests with coverage report" -ForegroundColor White
-    Write-Host "  pnpm test:e2e      - Run E2E tests with Playwright" -ForegroundColor White
-    Write-Host "  pnpm test:e2e:ui   - Run E2E tests with Playwright UI" -ForegroundColor White
+    Write-Host "  pnpm test:e2e      - Run E2E tests" -ForegroundColor White
+    Write-Host "  pnpm test:e2e:ui   - Run E2E tests with UI" -ForegroundColor White
     Write-Host "  pnpm type-check    - Run TypeScript type checking" -ForegroundColor White
 
 } catch {
