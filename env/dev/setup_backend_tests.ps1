@@ -41,44 +41,81 @@ export default defineWorkersConfig({
     Set-Content -Path "vitest.config.ts" -Value $vitestConfig
     Write-Host "Created backend vitest.config.ts" -ForegroundColor Green
 
-    # Create test directory
-    Write-Host "Creating backend test directory..." -ForegroundColor Yellow
-    New-Item -Path "test" -ItemType Directory -Force | Out-Null
-
-    # Create example API test
+    # Create example API test in src directory
+    Write-Host "Creating backend test file..." -ForegroundColor Yellow
     $exampleTest = @"
 import { describe, it, expect } from 'vitest';
-import app from '../src/index';
+import app from './index';
 
-describe('API Endpoints', () => {
-  it('should return health check', async () => {
-    const req = new Request('http://localhost/');
-    const res = await app.fetch(req);
+describe('Health Check', () => {
+  it('should return health status', async () => {
+    const req = new Request('http://localhost/health');
+    const res = await app.request(req);
     const data = await res.json();
 
     expect(res.status).toBe(200);
     expect(data).toHaveProperty('status', 'ok');
-  });
-
-  it('should return prefectures endpoint', async () => {
-    const req = new Request('http://localhost/api/prefectures');
-    const res = await app.fetch(req);
-
-    expect(res.status).toBe(200);
+    expect(data).toHaveProperty('service', 'japan-geographic-backend');
   });
 });
 
-describe('GeoJSON Endpoints', () => {
-  it('should return geo data endpoint', async () => {
-    const req = new Request('http://localhost/api/geo/test');
-    const res = await app.fetch(req);
+describe('API Endpoints', () => {
+  it('should return version info', async () => {
+    const req = new Request('http://localhost/api/version');
+    const res = await app.request(req);
+    const data = await res.json() as any;
 
     expect(res.status).toBe(200);
+    expect(data).toHaveProperty('version');
+    expect(data).toHaveProperty('api');
+    expect(data).toHaveProperty('environment');
+  });
+
+  it('should return geography data', async () => {
+    const req = new Request('http://localhost/api/geography');
+    const res = await app.request(req);
+    const data = await res.json() as any;
+
+    expect(res.status).toBe(200);
+    expect(data).toHaveProperty('message');
+    expect(data).toHaveProperty('data');
+    expect(Array.isArray(data.data)).toBe(true);
+  });
+
+  it('should return prefectures data', async () => {
+    const req = new Request('http://localhost/api/prefectures');
+    const res = await app.request(req);
+    const data = await res.json() as any;
+
+    expect(res.status).toBe(200);
+    expect(data).toHaveProperty('data');
+    expect(Array.isArray(data.data)).toBe(true);
+  });
+
+  it('should return statistics data', async () => {
+    const req = new Request('http://localhost/api/statistics');
+    const res = await app.request(req);
+    const data = await res.json() as any;
+
+    expect(res.status).toBe(200);
+    expect(data).toHaveProperty('data');
+    expect(data.data).toHaveProperty('totalPopulation');
+  });
+});
+
+describe('Error Handling', () => {
+  it('should return 404 for unknown routes', async () => {
+    const req = new Request('http://localhost/unknown');
+    const res = await app.request(req);
+    const data = await res.json();
+
+    expect(res.status).toBe(404);
+    expect(data).toHaveProperty('error', 'Not Found');
   });
 });
 "@
-    Set-Content -Path "test/api.test.ts" -Value $exampleTest
-    Write-Host "Created test/api.test.ts" -ForegroundColor Green
+    Set-Content -Path "src/index.test.ts" -Value $exampleTest
+    Write-Host "Created src/index.test.ts" -ForegroundColor Green
 
     # Update package.json scripts
     Write-Host "Updating backend package.json scripts..." -ForegroundColor Yellow
@@ -88,10 +125,16 @@ describe('GeoJSON Endpoints', () => {
 
         # Add test scripts
         if (-not $packageJson.scripts.test) {
-            $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test" -Value "vitest" -Force
+            $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test" -Value "vitest run" -Force
+        }
+        if (-not $packageJson.scripts."test:watch") {
+            $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:watch" -Value "vitest" -Force
         }
         if (-not $packageJson.scripts."test:coverage") {
-            $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:coverage" -Value "vitest --coverage" -Force
+            $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:coverage" -Value "vitest run --coverage" -Force
+        }
+        if (-not $packageJson.scripts.typecheck) {
+            $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "typecheck" -Value "tsc --noEmit" -Force
         }
 
         $packageJson | ConvertTo-Json -Depth 10 | Set-Content $packageJsonPath

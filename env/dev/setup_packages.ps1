@@ -70,6 +70,9 @@ if (-not (Test-Path $backendPath)) {
                 dev = "wrangler dev"
                 deploy = "wrangler deploy"
                 typecheck = "tsc --noEmit"
+                test = "vitest run"
+                "test:watch" = "vitest"
+                "test:coverage" = "vitest run --coverage"
             }
             dependencies = @{
                 "hono" = "^4.0.0"

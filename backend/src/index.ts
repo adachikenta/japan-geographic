@@ -3,6 +3,7 @@ import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
 
 type Bindings = {
+  ENVIRONMENT?: string;
   // D1 Database (将来的に使用)
   // DB: D1Database;
   // R2 Bucket (将来的に使用)
@@ -44,7 +45,7 @@ api.get('/version', (c) => {
   return c.json({
     version: '1.0.0',
     api: 'v1',
-    environment: c.env.ENVIRONMENT || 'development',
+    environment: c.env?.ENVIRONMENT || 'development',
   });
 });
 

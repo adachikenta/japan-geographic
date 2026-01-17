@@ -173,9 +173,10 @@ test('homepage loads correctly', async ({ page }) => {
             $packageJson | Add-Member -MemberType NoteProperty -Name "scripts" -Value @{}
         }
 
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test" -Value "vitest" -Force
+        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test" -Value "vitest run" -Force
         $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:ui" -Value "vitest --ui" -Force
-        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:coverage" -Value "vitest --coverage" -Force
+        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:watch" -Value "vitest" -Force
+        $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:coverage" -Value "vitest run --coverage" -Force
         $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:e2e" -Value "playwright test" -Force
         $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:e2e:ui" -Value "playwright test --ui" -Force
         $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "type-check" -Value "tsc --noEmit" -Force
