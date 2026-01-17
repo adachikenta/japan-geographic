@@ -128,6 +128,18 @@ Flask-Babelの.poファイルをNext.js i18n用のJSONに変換：
 
 #### 2. 開発サーバーの起動
 
+まず、ローカル開発用のR2モックデータをセットアップします：
+
+```batch
+_setup_local_r2.bat
+```
+
+このスクリプトは以下を行います：
+- サンプルGeoJSONデータをローカルR2ストレージにコピー
+- Wranglerのローカル開発環境でR2バケットをエミュレート
+
+次に、開発サーバーを起動します：
+
 ```batch
 _start_app.bat
 ```
@@ -214,35 +226,56 @@ japan-geographic/
 └── _clean.bat           # クリーンアップ実行
 ```
 
-### トラブルシューティング
-
-#### Scoopのインストールに失敗する場合
-
-企業ネットワーク環境などでプロキシが設定されている場合、以下を実行してください：
-
-```powershell
-$env:HTTP_PROXY = "http://proxy.example.com:8080"
-$env:HTTPS_PROXY = "http://proxy.example.com:8080"
-```
-
-#### pnpmのインストールに失敗する場合
-
-npmを使って手動でインストールできます：
-
-```powershell
-npm install -g pnpm
-```
-
-#### ポートが既に使用されている場合
-
-- フロントエンド: `frontend/.env.local` に `PORT=3001` を追加
-- バックエンド: `backend/wrangler.toml` の `port` 設定を変更
-
 ### 次のステップ
 
 開発環境が構築できたら、以下の作業に進めます：
 
-1. Cloudflare Workers のD1データベース設定
-2. R2バケットの作成とGeoJSONデータのアップロード
-3. フロントエンドのマップコンポーネント実装
-4. バックエンドのAPI実装
+1. ✅ **完了**: R2バケットの設定とGeoJSONデータの準備
+   - wrangler.tomlにR2バケット設定を追加済み
+   - サンプルGeoJSONデータ（都道府県境界）を作成済み
+   - ローカル開発用のR2モックスクリプトを作成済み
+
+2. ✅ **完了**: フロントエンドのマップコンポーネント実装
+   - react-map-gl + MapLibre GL JSを使用したマップコンポーネント作成済み
+   - GeoJSONデータの読み込みと表示機能を実装済み
+   - ホームページにマップを統合済み
+
+3. ✅ **完了**: バックエンドのGeoJSON API実装
+   - R2バケットからGeoJSONを取得するAPIエンドポイント作成済み
+   - `/api/geojson/:filename` - 特定のGeoJSONファイルを取得
+   - `/api/geojson` - 利用可能なファイル一覧を取得
+
+### 本番環境へのデプロイ
+
+#### R2バケットの作成とデータアップロード
+
+Cloudflare Dashboardまたはwrangler CLIを使用してR2バケットを作成し、データをアップロードします：
+
+```powershell
+# R2バケットを作成
+wrangler r2 bucket create japan-geographic-geojson
+
+# GeoJSONデータをアップロード
+.\env\dev\upload_geojson.ps1
+```
+
+#### Cloudflare Workersのデプロイ
+
+```powershell
+cd backend
+pnpm run deploy
+```
+
+#### Vercelへのデプロイ
+
+```powershell
+cd frontend
+vercel deploy
+```
+
+### 今後の開発予定
+
+4. Cloudflare D1データベースの設定と統計データの格納
+5. より詳細な地理データの追加（山地、平野、盆地、河川など）
+6. Kepler.glを使用した高度な地理データ探索UIの実装
+7. 時系列データの可視化機能

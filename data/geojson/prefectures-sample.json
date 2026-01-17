@@ -1,0 +1,115 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "prefCode": "13",
+        "prefName": "東京都",
+        "region": "関東地方",
+        "population": 14047594,
+        "area": 2194.07
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [139.5, 35.5],
+            [139.9, 35.5],
+            [139.9, 35.9],
+            [139.5, 35.9],
+            [139.5, 35.5]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "prefCode": "27",
+        "prefName": "大阪府",
+        "region": "近畿地方",
+        "population": 8837685,
+        "area": 1905.32
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [135.3, 34.4],
+            [135.7, 34.4],
+            [135.7, 34.8],
+            [135.3, 34.8],
+            [135.3, 34.4]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "prefCode": "01",
+        "prefName": "北海道",
+        "region": "北海道地方",
+        "population": 5224614,
+        "area": 83424.31
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [140.0, 42.5],
+            [145.0, 42.5],
+            [145.0, 45.5],
+            [140.0, 45.5],
+            [140.0, 42.5]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "prefCode": "14",
+        "prefName": "神奈川県",
+        "region": "関東地方",
+        "population": 9237337,
+        "area": 2416.11
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [139.3, 35.2],
+            [139.7, 35.2],
+            [139.7, 35.6],
+            [139.3, 35.6],
+            [139.3, 35.2]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "prefCode": "47",
+        "prefName": "沖縄県",
+        "region": "沖縄地方",
+        "population": 1467480,
+        "area": 2281.12
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [127.5, 26.0],
+            [128.5, 26.0],
+            [128.5, 26.9],
+            [127.5, 26.9],
+            [127.5, 26.0]
+          ]
+        ]
+      }
+    }
+  ]
+}

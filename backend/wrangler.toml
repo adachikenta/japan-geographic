@@ -20,10 +20,11 @@ ENVIRONMENT = "development"
 # database_name = "japan-geographic-db"
 # database_id = "your-database-id"
 
-# R2 ストレージバインディング (将来的に使用)
-# [[r2_buckets]]
-# binding = "BUCKET"
-# bucket_name = "japan-geographic-data"
+# R2 ストレージバインディング (GeoJSONデータ保存用)
+[[r2_buckets]]
+binding = "GEOJSON_BUCKET"
+bucket_name = "japan-geographic-geojson"
+preview_bucket_name = "japan-geographic-geojson-preview"
 
 # KV ネームスペースバインディング (将来的に使用)
 # [[kv_namespaces]]

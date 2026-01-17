@@ -16,6 +16,7 @@
     "@turf/turf": "^7.2.0",
     "framer-motion": "^11.14.0",
     "mapbox-gl": "^2.15",
+    "maplibre-gl": "^4.7.1",
     "next": "^15.1.0",
     "next-intl": "^3.23.0",
     "react": "^19.0.0",

@@ -1,5 +1,18 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
+
+// JapanMapをクライアントサイドのみで読み込む
+const JapanMap = dynamic(() => import('@/components/JapanMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-gray-100">
+      <p className="text-gray-600">マップを読み込み中...</p>
+    </div>
+  ),
+});
 
 export default function HomePage() {
   const t = useTranslations('');
@@ -9,6 +22,28 @@ export default function HomePage() {
       <Header />
 
       <main className="container mx-auto px-4 py-8">
+        {/* マップセクション */}
+        <div className="mb-12">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-gray-800">日本地理マップ</h2>
+              <div className="text-sm text-gray-600">
+                <span className="inline-block bg-blue-100 px-3 py-1 rounded">
+                  都道府県境界
+                </span>
+              </div>
+            </div>
+            <div className="w-full h-[600px] rounded-lg overflow-hidden border border-gray-200">
+              <JapanMap
+                geojsonUrl="http://localhost:8787/api/geojson/prefectures-sample.json"
+              />
+            </div>
+            <p className="mt-3 text-sm text-gray-500">
+              ※ 現在はサンプルデータを表示しています。マップ上でズームや移動操作が可能です。
+            </p>
+          </div>
+        </div>
+
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-primary mb-4">
             {t('system')}
