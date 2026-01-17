@@ -66,6 +66,7 @@ Deployment: Vercel (Next.jsネイティブ・自動Edge最適化)
 ```
 
 このスクリプトは以下を削除します：
+
 - app.py (Flaskアプリケーション)
 - templates/ (Jinja2テンプレート)
 - tests/*.py (Pythonテスト)
@@ -226,25 +227,6 @@ japan-geographic/
 └── _clean.bat           # クリーンアップ実行
 ```
 
-### 次のステップ
-
-開発環境が構築できたら、以下の作業に進めます：
-
-1. ✅ **完了**: R2バケットの設定とGeoJSONデータの準備
-   - wrangler.tomlにR2バケット設定を追加済み
-   - サンプルGeoJSONデータ（都道府県境界）を作成済み
-   - ローカル開発用のR2モックスクリプトを作成済み
-
-2. ✅ **完了**: フロントエンドのマップコンポーネント実装
-   - react-map-gl + MapLibre GL JSを使用したマップコンポーネント作成済み
-   - GeoJSONデータの読み込みと表示機能を実装済み
-   - ホームページにマップを統合済み
-
-3. ✅ **完了**: バックエンドのGeoJSON API実装
-   - R2バケットからGeoJSONを取得するAPIエンドポイント作成済み
-   - `/api/geojson/:filename` - 特定のGeoJSONファイルを取得
-   - `/api/geojson` - 利用可能なファイル一覧を取得
-
 ### 本番環境へのデプロイ
 
 #### R2バケットの作成とデータアップロード
@@ -272,10 +254,3 @@ pnpm run deploy
 cd frontend
 vercel deploy
 ```
-
-### 今後の開発予定
-
-4. Cloudflare D1データベースの設定と統計データの格納
-5. より詳細な地理データの追加（山地、平野、盆地、河川など）
-6. Kepler.glを使用した高度な地理データ探索UIの実装
-7. 時系列データの可視化機能

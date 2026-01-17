@@ -1,0 +1,92 @@
+{
+  "version": 8,
+  "name": "土地利用 - 国土数値情報（詳細）",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "tiles": ["https://tile.openstreetmap.jp/data/planet/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "layers": [
+    {
+      "id": "landuse-residential",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "residential"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#e8e4e1"
+      }
+    },
+    {
+      "id": "landuse-commercial",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "commercial"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#f2dad9"
+      }
+    },
+    {
+      "id": "landuse-industrial",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "industrial"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#dfd5e9"
+      }
+    },
+    {
+      "id": "landuse-cemetery",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "cemetery"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#d4e5b3"
+      }
+    },
+    {
+      "id": "landuse-farmland",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "farmland"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#f0e68c"
+      }
+    },
+    {
+      "id": "landuse-forest",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "forest"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#8dd19f"
+      }
+    },
+    {
+      "id": "landuse-park",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "park"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#9ed99c"
+      }
+    }
+  ]
+}

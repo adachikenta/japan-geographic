@@ -1,0 +1,93 @@
+{
+  "version": 8,
+  "name": "土地被覆図",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "tiles": ["https://tile.openstreetmap.jp/data/planet/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#f5f1e8"
+      }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#b3d9e8"
+      }
+    },
+    {
+      "id": "waterway",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "minzoom": 8,
+      "paint": {
+        "line-color": "#b3d9e8",
+        "line-width": {
+          "stops": [[8, 0.5], [10, 1], [14, 2]]
+        }
+      }
+    },
+    {
+      "id": "landcover-wood",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["in", "class", "wood"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#7fb06e",
+        "fill-opacity": 1
+      }
+    },
+    {
+      "id": "landcover-grass",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["in", "class", "grass"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#e3ecd0",
+        "fill-opacity": 1
+      }
+    },
+    {
+      "id": "landuse-forest",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "forest"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#7fb06e",
+        "fill-opacity": 1
+      }
+    },
+    {
+      "id": "landuse-farmland",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["in", "class", "farmland", "grass"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#e3ecd0",
+        "fill-opacity": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "version": 8,
+  "name": "土地利用 - 都市計画基礎調査",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "tiles": ["https://tile.openstreetmap.jp/data/planet/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "layers": [
+    {
+      "id": "landuse-residential-low",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "residential"],
+      "minzoom": 12,
+      "paint": {
+        "fill-color": "#fff3cd"
+      }
+    },
+    {
+      "id": "landuse-commercial-retail",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "commercial"],
+      "minzoom": 12,
+      "paint": {
+        "fill-color": "#ffcccc"
+      }
+    },
+    {
+      "id": "landuse-industrial-area",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "industrial"],
+      "minzoom": 12,
+      "paint": {
+        "fill-color": "#e6ccff"
+      }
+    },
+    {
+      "id": "landuse-public-facility",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["in", "class", "cemetery", "hospital"],
+      "minzoom": 12,
+      "paint": {
+        "fill-color": "#ccffff"
+      }
+    }
+  ]
+}

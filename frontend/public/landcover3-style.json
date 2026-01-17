@@ -1,0 +1,69 @@
+{
+  "version": 8,
+  "name": "土地被覆 - ESA WorldCover",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "tiles": ["https://tile.openstreetmap.jp/data/planet/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "layers": [
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#0064c8"
+      }
+    },
+    {
+      "id": "landcover-wood",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["in", "class", "wood"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#006400"
+      }
+    },
+    {
+      "id": "landcover-grass",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["in", "class", "grass"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#ffbb22"
+      }
+    },
+    {
+      "id": "landuse-forest",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["==", "class", "forest"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#008000"
+      }
+    },
+    {
+      "id": "landuse-farmland",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["in", "class", "farmland"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#ffff4c"
+      }
+    }
+  ]
+}

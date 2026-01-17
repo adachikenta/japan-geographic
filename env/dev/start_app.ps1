@@ -46,24 +46,25 @@ $frontendAbsPath = (Resolve-Path $frontendPath).Path
 $backendAbsPath = (Resolve-Path $backendPath).Path
 
 # Start backend server (Hono + Cloudflare Workers)
-Write-Host "Starting backend server (Hono + Wrangler)..." -ForegroundColor Cyan
+Write-Host "Starting backend server (Hono + Wrangler) in separate window..." -ForegroundColor Cyan
 Start-DevServer -Title "Japan Geographic - Backend (Hono)" -WorkingDirectory $backendAbsPath -Command "pnpm dev"
 
 # Wait a moment for backend to start
 Start-Sleep -Seconds 2
 
-# Start frontend server (Next.js)
-Write-Host "Starting frontend server (Next.js)..." -ForegroundColor Cyan
-Start-DevServer -Title "Japan Geographic - Frontend (Next.js)" -WorkingDirectory $frontendAbsPath -Command "pnpm dev"
-
 Write-Host ""
-Write-Host "Development servers are starting in separate windows..." -ForegroundColor Green
-Write-Host ""
-Write-Host "Frontend (Next.js):" -ForegroundColor Cyan
-Write-Host "  URL: http://localhost:3000" -ForegroundColor White
+Write-Host "Backend server started in separate window." -ForegroundColor Green
 Write-Host ""
 Write-Host "Backend (Hono + Wrangler):" -ForegroundColor Cyan
 Write-Host "  URL: http://localhost:8787" -ForegroundColor White
 Write-Host ""
-Write-Host "Press Ctrl+C in each window to stop the servers." -ForegroundColor Yellow
+Write-Host "Starting frontend server (Next.js) in current window..." -ForegroundColor Cyan
+Write-Host "Frontend (Next.js):" -ForegroundColor Cyan
+Write-Host "  URL: http://localhost:3000" -ForegroundColor White
 Write-Host ""
+Write-Host "Press Ctrl+C to stop the frontend server." -ForegroundColor Yellow
+Write-Host ""
+
+# Start frontend server in current window
+Set-Location $frontendAbsPath
+& pnpm dev

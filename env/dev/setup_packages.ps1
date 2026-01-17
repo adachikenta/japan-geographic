@@ -19,7 +19,7 @@ if (-not (Test-Path "$frontendPath\package.json")) {
 Write-Host "Installing frontend dependencies..." -ForegroundColor Yellow
 Push-Location $frontendPath
 try {
-    pnpm install
+    pnpm install --reporter=append-only
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to install frontend dependencies"
     }
@@ -78,7 +78,7 @@ if ($missingFiles.Count -gt 0) {
 Write-Host "Installing backend dependencies..." -ForegroundColor Yellow
 Push-Location $backendPath
 try {
-    pnpm install
+    pnpm install --reporter=append-only
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to install backend dependencies"
     }

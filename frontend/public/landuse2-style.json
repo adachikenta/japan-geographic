@@ -1,0 +1,48 @@
+{
+  "version": 8,
+  "name": "土地利用 - 国土数値情報（簡易）",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "tiles": ["https://tile.openstreetmap.jp/data/planet/{z}/{x}/{y}.pbf"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "layers": [
+    {
+      "id": "landuse-urban",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["in", "class", "residential", "commercial", "industrial"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#e0c0c0"
+      }
+    },
+    {
+      "id": "landuse-agriculture",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["in", "class", "farmland", "grass"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#f5deb3"
+      }
+    },
+    {
+      "id": "landuse-green",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landuse",
+      "filter": ["in", "class", "forest", "park", "cemetery"],
+      "minzoom": 0,
+      "paint": {
+        "fill-color": "#90ee90"
+      }
+    }
+  ]
+}

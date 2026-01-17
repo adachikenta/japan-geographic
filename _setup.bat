@@ -13,6 +13,9 @@ if %ERRORLEVEL% NEQ 0 (goto :catch)
 powershell -ExecutionPolicy Bypass -NoLogo -File .\env\dev\setup_packages.ps1
 if %ERRORLEVEL% NEQ 0 (goto :catch)
 
+powershell -ExecutionPolicy Bypass -NoLogo -File .\env\dev\setup_local_r2.ps1
+if %ERRORLEVEL% NEQ 0 (goto :catch)
+
 :catch
 :finally
 set EXIT_CODE=%ERRORLEVEL%
