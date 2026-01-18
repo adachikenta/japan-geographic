@@ -1,0 +1,757 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.34694,
+          43.06417
+        ]
+      },
+      "properties": {
+        "name": "北海道",
+        "population": 5140000,
+        "type": "prefecture",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.74,
+          40.82444
+        ]
+      },
+      "properties": {
+        "name": "青森県",
+        "population": 1186000,
+        "type": "prefecture",
+        "prefecture": "青森県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.1527,
+          39.70361
+        ]
+      },
+      "properties": {
+        "name": "岩手県",
+        "population": 1180000,
+        "type": "prefecture",
+        "prefecture": "岩手県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.87194,
+          38.26889
+        ]
+      },
+      "properties": {
+        "name": "宮城県",
+        "population": 2270000,
+        "type": "prefecture",
+        "prefecture": "宮城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.10278,
+          39.71861
+        ]
+      },
+      "properties": {
+        "name": "秋田県",
+        "population": 933000,
+        "type": "prefecture",
+        "prefecture": "秋田県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.36333,
+          38.24056
+        ]
+      },
+      "properties": {
+        "name": "山形県",
+        "population": 1029000,
+        "type": "prefecture",
+        "prefecture": "山形県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.46778,
+          37.75028
+        ]
+      },
+      "properties": {
+        "name": "福島県",
+        "population": 1794000,
+        "type": "prefecture",
+        "prefecture": "福島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.44667,
+          36.34167
+        ]
+      },
+      "properties": {
+        "name": "茨城県",
+        "population": 2843000,
+        "type": "prefecture",
+        "prefecture": "茨城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.88361,
+          36.56583
+        ]
+      },
+      "properties": {
+        "name": "栃木県",
+        "population": 1914000,
+        "type": "prefecture",
+        "prefecture": "栃木県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.06083,
+          36.39111
+        ]
+      },
+      "properties": {
+        "name": "群馬県",
+        "population": 1919000,
+        "type": "prefecture",
+        "prefecture": "群馬県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.64889,
+          35.85694
+        ]
+      },
+      "properties": {
+        "name": "埼玉県",
+        "population": 7345000,
+        "type": "prefecture",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.12333,
+          35.60472
+        ]
+      },
+      "properties": {
+        "name": "千葉県",
+        "population": 6281000,
+        "type": "prefecture",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.69167,
+          35.68944
+        ]
+      },
+      "properties": {
+        "name": "東京都",
+        "population": 14047000,
+        "type": "prefecture",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.6425,
+          35.44778
+        ]
+      },
+      "properties": {
+        "name": "神奈川県",
+        "population": 9233000,
+        "type": "prefecture",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.02361,
+          37.90222
+        ]
+      },
+      "properties": {
+        "name": "新潟県",
+        "population": 2155000,
+        "type": "prefecture",
+        "prefecture": "新潟県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.21139,
+          36.69528
+        ]
+      },
+      "properties": {
+        "name": "富山県",
+        "population": 1016000,
+        "type": "prefecture",
+        "prefecture": "富山県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.62556,
+          36.59444
+        ]
+      },
+      "properties": {
+        "name": "石川県",
+        "population": 1119000,
+        "type": "prefecture",
+        "prefecture": "石川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.22167,
+          36.06528
+        ]
+      },
+      "properties": {
+        "name": "福井県",
+        "population": 754000,
+        "type": "prefecture",
+        "prefecture": "福井県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.56833,
+          35.66361
+        ]
+      },
+      "properties": {
+        "name": "山梨県",
+        "population": 804000,
+        "type": "prefecture",
+        "prefecture": "山梨県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.18111,
+          36.65139
+        ]
+      },
+      "properties": {
+        "name": "長野県",
+        "population": 2019000,
+        "type": "prefecture",
+        "prefecture": "長野県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.72222,
+          35.39111
+        ]
+      },
+      "properties": {
+        "name": "岐阜県",
+        "population": 1950000,
+        "type": "prefecture",
+        "prefecture": "岐阜県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.38306,
+          34.97694
+        ]
+      },
+      "properties": {
+        "name": "静岡県",
+        "population": 3602000,
+        "type": "prefecture",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.90667,
+          35.18028
+        ]
+      },
+      "properties": {
+        "name": "愛知県",
+        "population": 7539000,
+        "type": "prefecture",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.50861,
+          34.73028
+        ]
+      },
+      "properties": {
+        "name": "三重県",
+        "population": 1747000,
+        "type": "prefecture",
+        "prefecture": "三重県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.86806,
+          35.00444
+        ]
+      },
+      "properties": {
+        "name": "滋賀県",
+        "population": 1414000,
+        "type": "prefecture",
+        "prefecture": "滋賀県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.75556,
+          35.02111
+        ]
+      },
+      "properties": {
+        "name": "京都府",
+        "population": 2544000,
+        "type": "prefecture",
+        "prefecture": "京都府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.52,
+          34.68639
+        ]
+      },
+      "properties": {
+        "name": "大阪府",
+        "population": 8809000,
+        "type": "prefecture",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.18306,
+          34.69139
+        ]
+      },
+      "properties": {
+        "name": "兵庫県",
+        "population": 5408000,
+        "type": "prefecture",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.83278,
+          34.68528
+        ]
+      },
+      "properties": {
+        "name": "奈良県",
+        "population": 1307000,
+        "type": "prefecture",
+        "prefecture": "奈良県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.1675,
+          34.22611
+        ]
+      },
+      "properties": {
+        "name": "和歌山県",
+        "population": 911000,
+        "type": "prefecture",
+        "prefecture": "和歌山県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.23778,
+          35.50361
+        ]
+      },
+      "properties": {
+        "name": "鳥取県",
+        "population": 548000,
+        "type": "prefecture",
+        "prefecture": "鳥取県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.05009,
+          35.47629
+        ]
+      },
+      "properties": {
+        "name": "島根県",
+        "population": 663000,
+        "type": "prefecture",
+        "prefecture": "島根県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.935,
+          34.66167
+        ]
+      },
+      "properties": {
+        "name": "岡山県",
+        "population": 1863000,
+        "type": "prefecture",
+        "prefecture": "岡山県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.45944,
+          34.39639
+        ]
+      },
+      "properties": {
+        "name": "広島県",
+        "population": 2760000,
+        "type": "prefecture",
+        "prefecture": "広島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.47056,
+          34.18611
+        ]
+      },
+      "properties": {
+        "name": "山口県",
+        "population": 1312000,
+        "type": "prefecture",
+        "prefecture": "山口県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.55944,
+          34.06583
+        ]
+      },
+      "properties": {
+        "name": "徳島県",
+        "population": 710000,
+        "type": "prefecture",
+        "prefecture": "徳島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.04333,
+          34.34
+        ]
+      },
+      "properties": {
+        "name": "香川県",
+        "population": 944000,
+        "type": "prefecture",
+        "prefecture": "香川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.76556,
+          33.84167
+        ]
+      },
+      "properties": {
+        "name": "愛媛県",
+        "population": 1316000,
+        "type": "prefecture",
+        "prefecture": "愛媛県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.53111,
+          33.55972
+        ]
+      },
+      "properties": {
+        "name": "高知県",
+        "population": 682000,
+        "type": "prefecture",
+        "prefecture": "高知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.41806,
+          33.60639
+        ]
+      },
+      "properties": {
+        "name": "福岡県",
+        "population": 5135000,
+        "type": "prefecture",
+        "prefecture": "福岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.29889,
+          33.24944
+        ]
+      },
+      "properties": {
+        "name": "佐賀県",
+        "population": 807000,
+        "type": "prefecture",
+        "prefecture": "佐賀県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          129.87361,
+          32.75028
+        ]
+      },
+      "properties": {
+        "name": "長崎県",
+        "population": 1290000,
+        "type": "prefecture",
+        "prefecture": "長崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.74139,
+          32.78972
+        ]
+      },
+      "properties": {
+        "name": "熊本県",
+        "population": 1719000,
+        "type": "prefecture",
+        "prefecture": "熊本県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.6125,
+          33.23833
+        ]
+      },
+      "properties": {
+        "name": "大分県",
+        "population": 1116000,
+        "type": "prefecture",
+        "prefecture": "大分県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.42389,
+          31.91111
+        ]
+      },
+      "properties": {
+        "name": "宮崎県",
+        "population": 1054000,
+        "type": "prefecture",
+        "prefecture": "宮崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.55806,
+          31.56028
+        ]
+      },
+      "properties": {
+        "name": "鹿児島県",
+        "population": 1570000,
+        "type": "prefecture",
+        "prefecture": "鹿児島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.68111,
+          26.2125
+        ]
+      },
+      "properties": {
+        "name": "沖縄県",
+        "population": 1467000,
+        "type": "prefecture",
+        "prefecture": "沖縄県"
+      }
+    }
+  ]
+}

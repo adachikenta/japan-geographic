@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Map, { Source, Layer, NavigationControl, ScaleControl } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { LayerProps } from 'react-map-gl/maplibre';
-import { OVERLAY_LAYERS, CHECKBOX_LAYERS, type OverlayType, type CheckboxLayerType } from '@/lib/mapLayers';
+import { OVERLAY_LAYERS, CHECKBOX_LAYERS, POPULATION_CHECKBOX_LAYERS, type OverlayType, type AllCheckboxLayerType } from '@/lib/mapLayers';
 
 interface JapanMapProps {
   geojsonUrl?: string;
@@ -68,6 +68,7 @@ export default function JapanMap({
     lng: initialViewState?.longitude || 138.0,
     lat: initialViewState?.latitude || 37.0,
   });
+  const [populationPrefectureData, setPopulationPrefectureData] = useState<any[]>([]);
 
   // デフォルトの視点設定（日本全体）
   const defaultViewState = {
@@ -93,6 +94,28 @@ export default function JapanMap({
       map.showTileBoundaries = showTileBoundaries;
     }
   }, [showTileBoundaries]);
+
+  // 人口データの読み込み（県庁所在地レイヤー用）
+  useEffect(() => {
+    const loadPopulationData = async () => {
+      try {
+        const prefResponse = await fetch('/population-prefecture-circle.json');
+        if (prefResponse.ok) {
+          const prefData = await prefResponse.json();
+          const formattedPrefData = prefData.features.map((f: any) => ({
+            name: f.properties.name,
+            population: f.properties.population,
+            coordinates: f.geometry.coordinates as [number, number]
+          }));
+          setPopulationPrefectureData(formattedPrefData);
+        }
+      } catch (error) {
+        console.error('❌ 人口データ読み込みエラー:', error);
+      }
+    };
+
+    loadPopulationData();
+  }, []);
 
   // マップ初期化時に事前準備（地形データと都市域データ）
   useEffect(() => {
@@ -387,28 +410,23 @@ export default function JapanMap({
 
     // すべてのチェックボックスレイヤーを確認
     const processLayers = async () => {
-      for (const layerKey of Object.keys(CHECKBOX_LAYERS)) {
-        // 中断チェック
-        if (abortController.signal.aborted) {
-          console.log(`🚫 [${startTime}] 中断検出 - チェックボックスレイヤー処理を中止`);
-          return;
-        }
+      // urbanレイヤーのみ処理（population*はPOPULATION_CHECKBOX_LAYERSで管理）
+      const layerKey = 'urban';
+      const layer = CHECKBOX_LAYERS[layerKey];
+      const isEnabled = currentLayers.has(layerKey);
+      const vectorSourceId = `checkbox-${layerKey}-vector`;
+      const vectorFillLayerId = `${vectorSourceId}-fill`;
+      const vectorOutlineLayerId = `${vectorSourceId}-outline`;
+      const geojsonSourceId = `checkbox-${layerKey}-geojson`;
+      const geojsonFillLayerId = `${geojsonSourceId}-fill`;
+      const geojsonOutlineLayerId = `${geojsonSourceId}-outline`;
 
-        const layer = CHECKBOX_LAYERS[layerKey as CheckboxLayerType];
-        const isEnabled = currentLayers.has(layerKey as CheckboxLayerType);
-        const vectorSourceId = `checkbox-${layerKey}-vector`;
-        const vectorFillLayerId = `${vectorSourceId}-fill`;
-        const vectorOutlineLayerId = `${vectorSourceId}-outline`;
-        const geojsonSourceId = `checkbox-${layerKey}-geojson`;
-        const geojsonFillLayerId = `${geojsonSourceId}-fill`;
-        const geojsonOutlineLayerId = `${geojsonSourceId}-outline`;
+      console.log(`  処理中: ${layerKey}, 有効: ${isEnabled}`);
 
-        console.log(`  処理中: ${layerKey}, 有効: ${isEnabled}`);
-
-        if (isEnabled) {
-          // ソースは既に事前準備済みなので、レイヤーだけ追加（軽量な処理）
-          // ソースが未準備の場合のみ追加
-          if (!map.getSource(vectorSourceId)) {
+      if (isEnabled) {
+        // ソースは既に事前準備済みなので、レイヤーだけ追加（軽量な処理）
+        // ソースが未準備の場合のみ追加
+        if (!map.getSource(vectorSourceId)) {
             console.log(`  ⚠️ ソース未準備、追加中: ${vectorSourceId}`);
             map.addSource(vectorSourceId, {
               type: 'vector',
@@ -524,17 +542,16 @@ export default function JapanMap({
             console.log(`  ✓ GeoJSON outline layer added (zoom 6+)`);
           }
 
-          console.log(`  ✓ レイヤー追加完了: ${layerKey} (${Date.now() - startTime}ms)`);
-        } else {
-          // レイヤーを削除（ソースは残す - 次回の表示が速くなる）
-          [vectorOutlineLayerId, vectorFillLayerId, geojsonOutlineLayerId, geojsonFillLayerId].forEach(layerId => {
-            if (map.getLayer(layerId)) {
-              console.log(`  🗑️ レイヤー削除: ${layerId}`);
-              map.removeLayer(layerId);
-            }
-          });
-          // ソースは削除しない（キャッシュとして残す）
-        }
+        console.log(`  ✓ レイヤー追加完了: ${layerKey} (${Date.now() - startTime}ms)`);
+      } else {
+        // レイヤーを削除（ソースは残す - 次回の表示が速くなる）
+        [vectorOutlineLayerId, vectorFillLayerId, geojsonOutlineLayerId, geojsonFillLayerId].forEach(layerId => {
+          if (map.getLayer(layerId)) {
+            console.log(`  🗑️ レイヤー削除: ${layerId}`);
+            map.removeLayer(layerId);
+          }
+        });
+        // ソースは削除しない（キャッシュとして残す）
       }
 
       const totalTime = Date.now() - startTime;
@@ -553,6 +570,273 @@ export default function JapanMap({
       }
     };
   }, [checkboxLayers]);
+
+  // 人口レイヤーの管理（円表示と3D表示）
+  useEffect(() => {
+    const map = mapRef.current?.getMap();
+    if (!map) {
+      console.log('❌ Population layers: Map not ready');
+      return;
+    }
+
+    const startTime = Date.now();
+    const currentLayers = new Set(checkboxLayers);
+    const abortController = new AbortController();
+
+    console.log(`🔄 [${startTime}] 人口レイヤー管理開始:`, Array.from(currentLayers));
+
+    const processPopulationLayers = async () => {
+      const populationLayers = [
+        {
+          key: 'populationPrefecture',
+          dataUrl: '/population-prefecture-circle.json',
+          sourceId: 'population-prefecture-source',
+          layerId: 'population-prefecture-layer',
+          type: 'circle' as const,
+          color: '#FF6B6B',
+          strokeColor: '#C92A2A'
+        },
+        {
+          key: 'populationPrefecture3d',
+          dataUrl: '/population-prefecture-3d.json',
+          sourceId: 'population-prefecture-3d-source',
+          layerId: 'population-prefecture-3d-layer',
+          type: 'fill-extrusion' as const,
+          color: '#FF6B6B'
+        },
+        {
+          key: 'populationCity',
+          dataUrl: '/population-city-circle.json',
+          sourceId: 'population-city-source',
+          layerId: 'population-city-layer',
+          type: 'circle' as const,
+          color: '#4ECDC4',
+          strokeColor: '#2D9B95'
+        },
+        {
+          key: 'populationCity3d',
+          dataUrl: '/population-city-3d.json',
+          sourceId: 'population-city-3d-source',
+          layerId: 'population-city-3d-layer',
+          type: 'fill-extrusion' as const,
+          color: '#4ECDC4'
+        }
+      ];
+
+      for (const layer of populationLayers) {
+        // 中断チェック
+        if (abortController.signal.aborted) {
+          console.log(`🚫 [${startTime}] 中断検出 - 人口レイヤー処理を中止`);
+          return;
+        }
+
+        const isEnabled = currentLayers.has(layer.key as AllCheckboxLayerType);
+        console.log(`  処理中: ${layer.key}, 有効: ${isEnabled}`);
+
+        if (isEnabled) {
+          // データソースを追加（初回のみ）
+          if (!map.getSource(layer.sourceId)) {
+            console.log(`  📥 データ読み込み開始: ${layer.dataUrl}`);
+            try {
+              const response = await fetch(layer.dataUrl, { signal: abortController.signal });
+              if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+              if (abortController.signal.aborted) {
+                console.log(`  🚫 fetch中断: ${layer.sourceId}`);
+                return;
+              }
+
+              const geojsonData = await response.json();
+
+              if (abortController.signal.aborted) {
+                console.log(`  🚫 parse後に中断: ${layer.sourceId}`);
+                return;
+              }
+
+              map.addSource(layer.sourceId, {
+                type: 'geojson',
+                data: geojsonData
+              });
+              console.log(`  ✓ データソース追加: ${layer.sourceId}`);
+            } catch (error) {
+              if ((error as Error).name === 'AbortError') {
+                console.log(`  🚫 fetch中断 (AbortError): ${layer.sourceId}`);
+                return;
+              }
+              console.error(`  ❌ データ読み込み失敗 ${layer.key}:`, error);
+              continue;
+            }
+          }
+
+          // レイヤーを追加
+          if (!map.getLayer(layer.layerId)) {
+            const layers = map.getStyle().layers;
+            const firstSymbolId = layers?.find((l: any) => l.type === 'symbol')?.id;
+
+            if (layer.type === 'circle') {
+              // 円レイヤー（人口に比例した大きさ）
+              map.addLayer({
+                id: layer.layerId,
+                type: 'circle',
+                source: layer.sourceId,
+                paint: {
+                  'circle-radius': [
+                    'interpolate',
+                    ['linear'],
+                    ['get', 'population'],
+                    0, 3,              // 人口0 → 半径3px
+                    100000, 8,         // 10万人 → 半径8px
+                    500000, 15,        // 50万人 → 半径15px
+                    1000000, 22,       // 100万人 → 半径22px
+                    5000000, 35,       // 500万人 → 半径35px
+                    10000000, 50       // 1000万人 → 半径50px
+                  ],
+                  'circle-color': layer.color,
+                  'circle-opacity': 0.6,
+                  'circle-stroke-width': 2,
+                  'circle-stroke-color': layer.strokeColor,
+                  'circle-stroke-opacity': 0.8
+                }
+              }, firstSymbolId);
+              console.log(`  ✓ 円レイヤー追加: ${layer.layerId}`);
+            } else if (layer.type === 'fill-extrusion') {
+              // 3Dレイヤー（円柱状）
+              // 注: MapLibre GL JSでは rounded-roof 未対応のため円柱表示
+              map.addLayer({
+                id: layer.layerId,
+                type: 'fill-extrusion',
+                source: layer.sourceId,
+                paint: {
+                  'fill-extrusion-color': layer.color,
+                  'fill-extrusion-height': [
+                    'interpolate',
+                    ['linear'],
+                    ['get', 'population'],
+                    0, 0,
+                    100000, 5000,      // 10万人 → 5km
+                    500000, 15000,     // 50万人 → 15km
+                    1000000, 30000,    // 100万人 → 30km
+                    5000000, 80000,    // 500万人 → 80km
+                    10000000, 120000   // 1000万人 → 120km
+                  ],
+                  'fill-extrusion-base': 0,
+                  'fill-extrusion-opacity': 0.7
+                }
+              }, firstSymbolId);
+              console.log(`  ✓ 3D円柱レイヤー追加: ${layer.layerId}`);
+            }
+          }
+
+          console.log(`  ✓ レイヤー追加完了: ${layer.key} (${Date.now() - startTime}ms)`);
+        } else {
+          // レイヤーを削除（ソースは残す）
+          if (map.getLayer(layer.layerId)) {
+            map.removeLayer(layer.layerId);
+            console.log(`  🗑️ レイヤー削除: ${layer.layerId}`);
+          }
+          // ソースは削除しない（キャッシュとして残す）
+        }
+      }
+
+      const totalTime = Date.now() - startTime;
+      console.log(`🎉 [${startTime}] 人口レイヤー管理完了 (${totalTime}ms)`);
+    };
+
+    processPopulationLayers().catch(err => {
+      console.error('人口レイヤー処理エラー:', err);
+    });
+
+    // クリーンアップ
+    return () => {
+      if (!abortController.signal.aborted) {
+        console.log(`🛑 [${startTime}] 人口レイヤー処理を中断`);
+        abortController.abort();
+      }
+    };
+  }, [checkboxLayers]);
+
+  // 県庁所在地レイヤーの管理
+  useEffect(() => {
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+
+    const prefectureCapitalsEnabled = checkboxLayers.has('prefectureCapitals');
+    const sourceId = 'prefecture-capitals';
+    const layerId = 'prefecture-capitals-layer';
+
+    if (prefectureCapitalsEnabled && populationPrefectureData.length > 0) {
+      // GeoJSONデータを作成
+      const geojsonData = {
+        type: 'FeatureCollection',
+        features: populationPrefectureData.map((pref: any) => ({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: pref.coordinates
+          },
+          properties: {
+            name: pref.name
+          }
+        }))
+      };
+
+      // ソースを追加または更新
+      if (!map.getSource(sourceId)) {
+        map.addSource(sourceId, {
+          type: 'geojson',
+          data: geojsonData as any
+        });
+      } else {
+        (map.getSource(sourceId) as any).setData(geojsonData);
+      }
+
+      // レイヤーを追加
+      if (!map.getLayer(layerId)) {
+        map.addLayer({
+          id: layerId,
+          type: 'circle',
+          source: sourceId,
+          paint: {
+            'circle-radius': 5,
+            'circle-color': '#FF6B6B',
+            'circle-stroke-width': 2,
+            'circle-stroke-color': '#FFFFFF'
+          }
+        });
+
+        // ラベルレイヤー
+        map.addLayer({
+          id: `${layerId}-label`,
+          type: 'symbol',
+          source: sourceId,
+          layout: {
+            'text-field': ['get', 'name'],
+            'text-size': 11,
+            'text-offset': [0, 1.2],
+            'text-anchor': 'top'
+          },
+          paint: {
+            'text-color': '#333333',
+            'text-halo-color': '#FFFFFF',
+            'text-halo-width': 1.5
+          }
+        });
+
+        console.log('✓ 県庁所在地レイヤー追加');
+      }
+    } else {
+      // レイヤーを削除
+      if (map.getLayer(`${layerId}-label`)) {
+        map.removeLayer(`${layerId}-label`);
+      }
+      if (map.getLayer(layerId)) {
+        map.removeLayer(layerId);
+      }
+      if (map.getSource(sourceId)) {
+        map.removeSource(sourceId);
+      }
+    }
+  }, [checkboxLayers, populationPrefectureData]);
 
   return (
     <div className="relative w-full h-full">
@@ -578,6 +862,22 @@ export default function JapanMap({
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAP_STYLES['standard'].url}
         attributionControl={false}
+        onLoad={(e) => {
+          const map = e.target;
+          console.log(`🗺️ [マップonLoad] マップロード完了`);
+          console.log(`🔍 [マップonLoad] Deck.GL初期化チェック - deckOverlayRef.current: ${!!deckOverlayRef.current}`);
+
+          if (!deckOverlayRef.current) {
+            console.log(`🚀 [マップonLoad] Deck.GL初期化開始...`);
+            const deckOverlay = new MapboxOverlay({
+              interleaved: true,
+              layers: []
+            });
+            deckOverlayRef.current = deckOverlay;
+            map.addControl(deckOverlay as any);
+            console.log('✅ [マップonLoad] Deck.GLオーバーレイ初期化完了');
+          }
+        }}
         onZoom={handleMapMove}
         onMove={handleMapMove}
         onClick={(e) => {
