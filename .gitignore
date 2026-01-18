@@ -13,6 +13,16 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 
+# Python
+__pycache__/
+__pycache__/*
+
+# Data processing intermediate files (regenerable from GML/*.zip)
+data/processing/all_city_halls.csv
+data/processing/all_city_halls_dict.py
+data/processing/fetch_city_population_FINAL.py
+data/processing/fetch_city_population_updated.py
+GML/extracted/
 # Cloudflare Workers
 .wrangler/
 .dev.vars

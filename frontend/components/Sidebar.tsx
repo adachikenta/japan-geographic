@@ -14,6 +14,10 @@ interface SidebarProps {
   onTerrainChange: (show: boolean) => void;
   showTileBoundaries: boolean;
   onTileBoundariesChange: (show: boolean) => void;
+  sizeScale: number;
+  onSizeScaleChange: (scale: number) => void;
+  sphereSizeScale: number;
+  onSphereSizeScaleChange: (scale: number) => void;
 }
 
 type TabType = 'map' | 'settings' | 'help';
@@ -27,6 +31,10 @@ export default function Sidebar({
   onTerrainChange,
   showTileBoundaries,
   onTileBoundariesChange,
+  sizeScale,
+  onSizeScaleChange,
+  sphereSizeScale,
+  onSphereSizeScaleChange,
 }: SidebarProps) {
   const t = useTranslations();
   const router = useRouter();
@@ -228,7 +236,7 @@ export default function Sidebar({
                       <span className="text-sm">人口 - 全域</span>
                     </th>
                     <th className="text-center py-1 px-1 font-normal text-white/80">円</th>
-                    <th className="text-center py-1 px-1 font-normal text-white/80">ドーム</th>
+                    <th className="text-center py-1 px-1 font-normal text-white/80">球</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -276,6 +284,98 @@ export default function Sidebar({
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            {/* サイズ調整スライダー */}
+            <div className="mt-4 bg-white/5 rounded p-3">
+              <div className="flex items-center justify-between mb-2" style={{ minHeight: '70px' }}>
+                <label className="text-sm font-medium text-white/90">人口円サイズ</label>
+                <div className="flex items-center gap-1" style={{ minHeight: '70px' }}>
+                  <div className="flex items-center justify-center" style={{ width: '70px', height: '70px' }}>
+                    <div
+                      className="rounded-full bg-gray-400 border-2 border-gray-200"
+                      style={{
+                        width: `${Math.round(16 * sizeScale * 2)}px`,
+                        height: `${Math.round(16 * sizeScale * 2)}px`
+                      }}
+                    />
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <span className="text-xs text-white/50">50万人</span>
+                    <span className="text-xs text-white/70">{Math.round(16 * sizeScale)}px</span>
+                  </div>
+                </div>
+              </div>
+              <input
+                type="range"
+                min="0.3"
+                max="2.0"
+                step="0.05"
+                value={sizeScale}
+                onChange={(e) => onSizeScaleChange(parseFloat(e.target.value))}
+                className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+                style={{
+                  background: `linear-gradient(to right, #9ca3af 0%, #9ca3af ${((sizeScale - 0.3) / 1.7) * 100}%, rgba(255,255,255,0.2) ${((sizeScale - 0.3) / 1.7) * 100}%, rgba(255,255,255,0.2) 100%)`
+                }}
+              />
+              <div className="flex justify-between items-center text-xs text-white/50 mt-1">
+                <span>×0.3</span>
+                <button
+                  onClick={() => onSizeScaleChange(1.0)}
+                  className="px-2 py-0.5 bg-white/10 hover:bg-white/20 rounded text-white/70 hover:text-white transition-colors text-xs"
+                  title="デフォルトサイズに戻す"
+                >
+                  ×1
+                </button>
+                <span>×2.0</span>
+              </div>
+            </div>
+
+            {/* 球体サイズ調整スライダー */}
+            <div className="mt-4 bg-white/5 rounded p-3">
+              <div className="flex items-center justify-between mb-2" style={{ minHeight: '70px' }}>
+                <label className="text-sm font-medium text-white/90">人口球サイズ</label>
+                <div className="flex items-center gap-1" style={{ minHeight: '70px' }}>
+                  <div className="flex items-center justify-center" style={{ width: '70px', height: '70px' }}>
+                    <div
+                      className="rounded-full"
+                      style={{
+                        width: `${Math.round(16 * sphereSizeScale * 2)}px`,
+                        height: `${Math.round(16 * sphereSizeScale * 2)}px`,
+                        background: 'radial-gradient(circle at 30% 30%, #d1d5db, #9ca3af 45%, #6b7280 80%)',
+                        boxShadow: '0 4px 8px rgba(0,0,0,0.3), inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.3)'
+                      }}
+                    />
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <span className="text-xs text-white/50">50万人</span>
+                    <span className="text-xs text-white/70">{Math.round(16 * sphereSizeScale)}px</span>
+                  </div>
+                </div>
+              </div>
+              <input
+                type="range"
+                min="0.3"
+                max="2.0"
+                step="0.05"
+                value={sphereSizeScale}
+                onChange={(e) => onSphereSizeScaleChange(parseFloat(e.target.value))}
+                className="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+                style={{
+                  background: `linear-gradient(to right, #9ca3af 0%, #9ca3af ${((sphereSizeScale - 0.3) / 1.7) * 100}%, rgba(255,255,255,0.2) ${((sphereSizeScale - 0.3) / 1.7) * 100}%, rgba(255,255,255,0.2) 100%)`
+                }}
+              />
+              <div className="flex justify-between items-center text-xs text-white/50 mt-1">
+                <span>×0.3</span>
+                <button
+                  onClick={() => onSphereSizeScaleChange(1.0)}
+                  className="px-2 py-0.5 bg-white/10 hover:bg-white/20 rounded text-white/70 hover:text-white transition-colors text-xs"
+                  title="デフォルトサイズに戻す"
+                >
+                  ×1
+                </button>
+                <span>×2.0</span>
+              </div>
             </div>
           </div>
         )}

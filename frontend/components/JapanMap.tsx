@@ -5,6 +5,10 @@ import Map, { Source, Layer, NavigationControl, ScaleControl } from 'react-map-g
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { LayerProps } from 'react-map-gl/maplibre';
 import { OVERLAY_LAYERS, CHECKBOX_LAYERS, POPULATION_CHECKBOX_LAYERS, type OverlayType, type AllCheckboxLayerType } from '@/lib/mapLayers';
+import { MapboxOverlay } from '@deck.gl/mapbox';
+import { SimpleMeshLayer } from '@deck.gl/mesh-layers';
+import { SphereGeometry } from '@luma.gl/engine';
+import type { PickingInfo } from '@deck.gl/core';
 
 interface JapanMapProps {
   geojsonUrl?: string;
@@ -17,6 +21,8 @@ interface JapanMapProps {
   checkboxLayers: Set<string>;
   showTerrain: boolean;
   showTileBoundaries: boolean;
+  sizeScale: number;
+  sphereSizeScale: number;
 }
 
 // マップスタイル定義
@@ -57,9 +63,16 @@ export default function JapanMap({
   overlayLayer,
   checkboxLayers,
   showTerrain,
-  showTileBoundaries
+  showTileBoundaries,
+  sizeScale,
+  sphereSizeScale
 }: JapanMapProps) {
   const mapRef = useRef<any>(null);
+  const deckOverlayRef = useRef<MapboxOverlay | null>(null);
+  const [populationData3d, setPopulationData3d] = useState<{
+    prefecture3d: any[];
+    city3d: any[];
+  }>({ prefecture3d: [], city3d: [] });
   const [geojsonData, setGeojsonData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -315,8 +328,8 @@ export default function JapanMap({
     });
 
     // 新しいオーバーレイレイヤーを追加（"none"以外の場合）
-    if (targetLayer !== 'none' && OVERLAY_LAYERS[targetLayer]?.url) {
-      const layerUrl = OVERLAY_LAYERS[targetLayer].url!;
+    if (targetLayer !== 'none' && OVERLAY_LAYERS[targetLayer as OverlayType]?.url) {
+      const layerUrl = OVERLAY_LAYERS[targetLayer as OverlayType].url!;
       console.log(`📥 [${startTime}] fetch開始: ${layerUrl}`);
 
       // オーバーレイスタイルを読み込んで適用
@@ -571,7 +584,7 @@ export default function JapanMap({
     };
   }, [checkboxLayers]);
 
-  // 人口レイヤーの管理（円表示と3D表示）
+  // 人口レイヤーの管理（円表示と3D半球表示）
   useEffect(() => {
     const map = mapRef.current?.getMap();
     if (!map) {
@@ -601,8 +614,9 @@ export default function JapanMap({
           dataUrl: '/population-prefecture-3d.json',
           sourceId: 'population-prefecture-3d-source',
           layerId: 'population-prefecture-3d-layer',
-          type: 'fill-extrusion' as const,
-          color: '#FF6B6B'
+          type: 'deck-column' as const,
+          color: [255, 107, 107],
+          dataRef: 'prefecture3d'
         },
         {
           key: 'populationCity',
@@ -618,8 +632,9 @@ export default function JapanMap({
           dataUrl: '/population-city-3d.json',
           sourceId: 'population-city-3d-source',
           layerId: 'population-city-3d-layer',
-          type: 'fill-extrusion' as const,
-          color: '#4ECDC4'
+          type: 'deck-column' as const,
+          color: [78, 205, 196],
+          dataRef: 'city3d'
         }
       ];
 
@@ -634,7 +649,72 @@ export default function JapanMap({
         console.log(`  処理中: ${layer.key}, 有効: ${isEnabled}`);
 
         if (isEnabled) {
-          // データソースを追加（初回のみ）
+          // Deck.gl ColumnLayerの場合は別処理
+          if (layer.type === 'deck-column') {
+            // データが未読み込みの場合のみ読み込む
+            const dataRefKey = (layer as any).dataRef;
+            if (populationData3d[dataRefKey as keyof typeof populationData3d].length === 0) {
+              console.log(`  📥 3D半球データ読み込み開始: ${layer.dataUrl}`);
+              try {
+                const response = await fetch(layer.dataUrl, { signal: abortController.signal });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                if (abortController.signal.aborted) {
+                  console.log(`  🚫 fetch中断: ${layer.sourceId}`);
+                  return;
+                }
+
+                const geojsonData = await response.json();
+
+                if (abortController.signal.aborted) {
+                  console.log(`  🚫 parse後に中断: ${layer.sourceId}`);
+                  return;
+                }
+
+                // GeoJSONをDeck.gl用の配列データに変換
+                const deckData = geojsonData.features.map((feature: any) => {
+                  let position;
+                  if (feature.geometry.type === 'Point') {
+                    position = feature.geometry.coordinates;
+                  } else if (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon') {
+                    // ポリゴンの場合、重心を計算（簡易版：最初の座標リングの平均）
+                    const coords = feature.geometry.type === 'Polygon'
+                      ? feature.geometry.coordinates[0]
+                      : feature.geometry.coordinates[0][0];
+                    const lngSum = coords.reduce((sum: number, c: number[]) => sum + c[0], 0);
+                    const latSum = coords.reduce((sum: number, c: number[]) => sum + c[1], 0);
+                    position = [lngSum / coords.length, latSum / coords.length];
+                  } else {
+                    console.warn('Unsupported geometry type:', feature.geometry.type);
+                    return null;
+                  }
+
+                  return {
+                    position,
+                    population: feature.properties.population,
+                    name: feature.properties.name
+                  };
+                }).filter((d: any) => d !== null);
+
+                // stateを更新してuseEffectをトリガー
+                setPopulationData3d(prev => ({
+                  ...prev,
+                  [dataRefKey]: deckData
+                }));
+                console.log(`  ✓ 3D半球データ準備完了: ${deckData.length}件`);
+              } catch (error) {
+                if ((error as Error).name === 'AbortError') {
+                  console.log(`  🚫 fetch中断 (AbortError): ${layer.sourceId}`);
+                  return;
+                }
+                console.error(`  ❌ データ読み込み失敗 ${layer.key}:`, error);
+                continue;
+              }
+            }
+            continue; // Deck.glレイヤーはMapLibreに追加しない
+          }
+
+          // MapLibreレイヤー（円）のソース追加
           if (!map.getSource(layer.sourceId)) {
             console.log(`  📥 データ読み込み開始: ${layer.dataUrl}`);
             try {
@@ -668,13 +748,33 @@ export default function JapanMap({
             }
           }
 
-          // レイヤーを追加
+          // レイヤーを追加（MapLibre円レイヤーのみ）
           if (!map.getLayer(layer.layerId)) {
             const layers = map.getStyle().layers;
             const firstSymbolId = layers?.find((l: any) => l.type === 'symbol')?.id;
 
             if (layer.type === 'circle') {
               // 円レイヤー（人口に比例した大きさ）
+              // レイヤーごとに異なる基準値を設定
+              const isCity = layer.key === 'populationCity';
+              const radiusStops = isCity
+                ? [
+                    0, 2 * sizeScale,
+                    50000, 5 * sizeScale,
+                    100000, 8 * sizeScale,
+                    500000, 15 * sizeScale,
+                    1000000, 22 * sizeScale,
+                    5000000, 35 * sizeScale
+                  ]
+                : [
+                    0, 3 * sizeScale,
+                    100000, 8 * sizeScale,
+                    500000, 15 * sizeScale,
+                    1000000, 22 * sizeScale,
+                    5000000, 35 * sizeScale,
+                    10000000, 50 * sizeScale
+                  ];
+
               map.addLayer({
                 id: layer.layerId,
                 type: 'circle',
@@ -684,12 +784,7 @@ export default function JapanMap({
                     'interpolate',
                     ['linear'],
                     ['get', 'population'],
-                    0, 3,              // 人口0 → 半径3px
-                    100000, 8,         // 10万人 → 半径8px
-                    500000, 15,        // 50万人 → 半径15px
-                    1000000, 22,       // 100万人 → 半径22px
-                    5000000, 35,       // 500万人 → 半径35px
-                    10000000, 50       // 1000万人 → 半径50px
+                    ...radiusStops
                   ],
                   'circle-color': layer.color,
                   'circle-opacity': 0.6,
@@ -699,40 +794,18 @@ export default function JapanMap({
                 }
               }, firstSymbolId);
               console.log(`  ✓ 円レイヤー追加: ${layer.layerId}`);
-            } else if (layer.type === 'fill-extrusion') {
-              // 3Dレイヤー（円柱状）
-              // 注: MapLibre GL JSでは rounded-roof 未対応のため円柱表示
-              map.addLayer({
-                id: layer.layerId,
-                type: 'fill-extrusion',
-                source: layer.sourceId,
-                paint: {
-                  'fill-extrusion-color': layer.color,
-                  'fill-extrusion-height': [
-                    'interpolate',
-                    ['linear'],
-                    ['get', 'population'],
-                    0, 0,
-                    100000, 5000,      // 10万人 → 5km
-                    500000, 15000,     // 50万人 → 15km
-                    1000000, 30000,    // 100万人 → 30km
-                    5000000, 80000,    // 500万人 → 80km
-                    10000000, 120000   // 1000万人 → 120km
-                  ],
-                  'fill-extrusion-base': 0,
-                  'fill-extrusion-opacity': 0.7
-                }
-              }, firstSymbolId);
-              console.log(`  ✓ 3D円柱レイヤー追加: ${layer.layerId}`);
             }
           }
 
           console.log(`  ✓ レイヤー追加完了: ${layer.key} (${Date.now() - startTime}ms)`);
         } else {
-          // レイヤーを削除（ソースは残す）
-          if (map.getLayer(layer.layerId)) {
-            map.removeLayer(layer.layerId);
-            console.log(`  🗑️ レイヤー削除: ${layer.layerId}`);
+          // Deck.glレイヤーは削除処理不要（useEffectで管理）
+          if (layer.type !== 'deck-column') {
+            // MapLibreレイヤーを削除（ソースは残す）
+            if (map.getLayer(layer.layerId)) {
+              map.removeLayer(layer.layerId);
+              console.log(`  🗑️ レイヤー削除: ${layer.layerId}`);
+            }
           }
           // ソースは削除しない（キャッシュとして残す）
         }
@@ -754,6 +827,222 @@ export default function JapanMap({
       }
     };
   }, [checkboxLayers]);
+
+  // サイズスケール変更時に円レイヤーのサイズを更新
+  useEffect(() => {
+    console.log(`🎨 サイズスケール変更検知: ${sizeScale}`);
+    const map = mapRef.current?.getMap();
+    if (!map) {
+      console.log('⚠️ マップが初期化されていません');
+      return;
+    }
+
+    // レイヤーが非同期で作成されるため、次のフレームで実行
+    const updateCircleRadius = () => {
+      console.log('🔄 円サイズ更新実行中...');
+      // 都道府県円レイヤー
+      if (map.getLayer('population-prefecture-layer')) {
+        map.setPaintProperty('population-prefecture-layer', 'circle-radius', [
+          'interpolate',
+          ['linear'],
+          ['get', 'population'],
+          0, 3 * sizeScale,
+          100000, 8 * sizeScale,
+          500000, 15 * sizeScale,
+          1000000, 22 * sizeScale,
+          5000000, 35 * sizeScale,
+          10000000, 50 * sizeScale
+        ]);
+        console.log(`✓ 都道府県円サイズ更新: ${sizeScale}`);
+      } else {
+        console.log('⚠️ 都道府県円レイヤーが見つかりません');
+      }
+
+      // 市区町村円レイヤー
+      if (map.getLayer('population-city-layer')) {
+        map.setPaintProperty('population-city-layer', 'circle-radius', [
+          'interpolate',
+          ['linear'],
+          ['get', 'population'],
+          0, 2 * sizeScale,
+          50000, 5 * sizeScale,
+          100000, 8 * sizeScale,
+          500000, 15 * sizeScale,
+          1000000, 22 * sizeScale,
+          5000000, 35 * sizeScale
+        ]);
+        console.log(`✓ 市区町村円サイズ更新: ${sizeScale}`);
+      } else {
+        console.log('⚠️ 市区町村円レイヤーが見つかりません');
+      }
+    };
+
+    // 即座に実行
+    updateCircleRadius();
+
+    // レイヤーがまだ存在しない場合に備えて、少し遅延させて再試行
+    const timeoutId = setTimeout(updateCircleRadius, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [sizeScale]);
+
+  // Deck.gl 3D半球レイヤーの管理
+  useEffect(() => {
+    const deckOverlay = deckOverlayRef.current;
+    const map = mapRef.current?.getMap();
+    if (!deckOverlay || !map) {
+      console.log('❌ Deck.GL or Map not initialized');
+      return;
+    }
+
+    const currentLayers = new Set(checkboxLayers);
+    const layers: any[] = [];
+
+    // ズームレベルに応じたスケール係数を計算（ズーム5を基準）
+    const zoom = map.getZoom();
+    const zoomScale = Math.pow(2, 5 - zoom); // ズームアウトで大きく、ズームインで小さく
+
+    // 3Dレイヤーが有効ならマップを傾ける
+    const has3dLayers = currentLayers.has('populationPrefecture3d') || currentLayers.has('populationCity3d');
+    if (has3dLayers) {
+      const currentPitch = map.getPitch();
+      if (currentPitch < 30) {
+        map.easeTo({ pitch: 45, duration: 1000 });
+        console.log('🎬 マップを3D視点に変更 (pitch: 45)');
+      }
+    } else {
+      const currentPitch = map.getPitch();
+      if (currentPitch > 0) {
+        map.easeTo({ pitch: 0, duration: 1000 });
+        console.log('🎬 マップを2D視点に戻す (pitch: 0)');
+      }
+    }
+
+    // 都道府県3D球体レイヤー
+    if (currentLayers.has('populationPrefecture3d') && populationData3d.prefecture3d.length > 0) {
+      console.log('🌐 都道府県3D球体レイヤー追加中...', {
+        dataCount: populationData3d.prefecture3d.length,
+        sampleData: populationData3d.prefecture3d[0]
+      });
+
+      // 滑らかな球体メッシュを作成
+      const sphereGeometry = new SphereGeometry({
+        nlat: 32,
+        nlong: 32,
+      });
+
+      layers.push(
+        new SimpleMeshLayer({
+          id: 'population-prefecture-sphere',
+          data: populationData3d.prefecture3d,
+          mesh: sphereGeometry,
+          getPosition: (d: any) => d.position,
+          getColor: (d: any) => [255, 107, 107, 200],
+          getOrientation: [0, 0, 0], // 回転なし
+          getScale: (d: any) => {
+            // 人口に完全に比例した半径（円レイヤーと同じロジック）
+            const pop = d.population || 0;
+            let radius;
+
+            // 線形補間で人口に比例した半径を計算（円と視覚的に同等のサイズ）
+            if (pop <= 0) radius = 3000;
+            else if (pop <= 100000) {
+              radius = 3000 + (pop / 100000) * (8000 - 3000);
+            } else if (pop <= 500000) {
+              radius = 8000 + ((pop - 100000) / 400000) * (15000 - 8000);
+            } else if (pop <= 1000000) {
+              radius = 15000 + ((pop - 500000) / 500000) * (22000 - 15000);
+            } else if (pop <= 5000000) {
+              radius = 22000 + ((pop - 1000000) / 4000000) * (35000 - 22000);
+            } else if (pop <= 10000000) {
+              radius = 35000 + ((pop - 5000000) / 5000000) * (50000 - 35000);
+            } else {
+              radius = 50000;
+            }
+
+            // ズームレベルに応じてスケール調整
+            const scaledRadius = radius * zoomScale * sphereSizeScale;
+
+            return [scaledRadius, scaledRadius, scaledRadius];
+          },
+          wireframe: false,
+          material: false,
+          _useMeshColors: false,
+          parameters: {
+            cull: true,
+            cullFace: 'back'
+          },
+          renderingOrder: 100,
+          updateTriggers: {
+            getScale: [populationData3d.prefecture3d, sphereSizeScale]
+          },
+        })
+      );
+      console.log('✅ 都道府県3D半球レイヤー設定完了');
+    }
+
+    // 市区町村3D球体レイヤー
+    if (currentLayers.has('populationCity3d') && populationData3d.city3d.length > 0) {
+      console.log('🌐 市区町村3D球体レイヤー追加中...');
+
+      const citySphereGeometry = new SphereGeometry({
+        nlat: 32,
+        nlong: 32,
+      });
+
+      layers.push(
+        new SimpleMeshLayer({
+          id: 'population-city-sphere',
+          data: populationData3d.city3d,
+          mesh: citySphereGeometry,
+          getPosition: (d: any) => d.position,
+          getColor: (d: any) => [78, 205, 196, 200],
+          getOrientation: [0, 0, 0],
+          getScale: (d: any) => {
+            const pop = d.population || 0;
+            let radius;
+
+            // 線形補間で人口に比例した半径を計算（円と視覚的に同等のサイズ）
+            if (pop <= 0) radius = 2000;
+            else if (pop <= 50000) {
+              radius = 2000 + (pop / 50000) * (5000 - 2000);
+            } else if (pop <= 100000) {
+              radius = 5000 + ((pop - 50000) / 50000) * (8000 - 5000);
+            } else if (pop <= 500000) {
+              radius = 8000 + ((pop - 100000) / 400000) * (15000 - 8000);
+            } else if (pop <= 1000000) {
+              radius = 15000 + ((pop - 500000) / 500000) * (22000 - 15000);
+            } else {
+              radius = 22000 + ((pop - 1000000) / 4000000) * (35000 - 22000);
+              if (radius > 35000) radius = 35000;
+            }
+
+            // ズームレベルに応じてスケール調整
+            const scaledRadius = radius * zoomScale * sphereSizeScale;
+
+            return [scaledRadius, scaledRadius, scaledRadius];
+          },
+          wireframe: false,
+          material: false,
+          _useMeshColors: false,
+          parameters: {
+            cull: true,
+            cullFace: 'back'
+          },
+          renderingOrder: 100,
+          updateTriggers: {
+            getScale: [populationData3d.city3d, sphereSizeScale]
+          },
+        })
+      );
+      console.log('✅ 市区町村3D半球レイヤー設定完了');
+    }
+
+    // Deck.glレイヤーを更新
+    deckOverlay.setProps({ layers });
+    console.log(`✅ Deck.gl レイヤー更新完了: ${layers.length}個`);
+
+  }, [checkboxLayers, populationData3d, currentZoom, sphereSizeScale]);
 
   // 県庁所在地レイヤーの管理
   useEffect(() => {
@@ -862,7 +1151,7 @@ export default function JapanMap({
         style={{ width: '100%', height: '100%' }}
         mapStyle={MAP_STYLES['standard'].url}
         attributionControl={false}
-        onLoad={(e) => {
+        onLoad={(e: any) => {
           const map = e.target;
           console.log(`🗺️ [マップonLoad] マップロード完了`);
           console.log(`🔍 [マップonLoad] Deck.GL初期化チェック - deckOverlayRef.current: ${!!deckOverlayRef.current}`);
@@ -880,7 +1169,7 @@ export default function JapanMap({
         }}
         onZoom={handleMapMove}
         onMove={handleMapMove}
-        onClick={(e) => {
+        onClick={(e: any) => {
           const map = mapRef.current?.getMap();
           if (map) {
             const features = map.queryRenderedFeatures(e.point);
@@ -933,10 +1222,10 @@ export default function JapanMap({
         </div>
 
         {/* ナビゲーションコントロール（右上） */}
-        <NavigationControl position="top-right" />
+        <NavigationControl position="top-right" style={{ zIndex: 10 }} />
 
         {/* スケールコントロール（右下） */}
-        <ScaleControl position="bottom-right" unit="metric" />
+        <ScaleControl position="bottom-right" unit="metric" style={{ zIndex: 10 }} />
 
         {/* マップ情報（中央下） */}
         <div

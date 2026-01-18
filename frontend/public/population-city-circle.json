@@ -6,15 +6,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          141.3469,
-          43.0618
+          140.385117,
+          35.253887
         ]
       },
       "properties": {
-        "name": "札幌市",
-        "population": 1974000,
+        "name": "いすみ市",
+        "population": 36000,
         "type": "city",
-        "prefecture": "北海道"
+        "prefecture": "千葉県"
       }
     },
     {
@@ -22,15 +22,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.8694,
-          38.2682
+          140.887687,
+          37.050456
         ]
       },
       "properties": {
-        "name": "仙台市",
-        "population": 1097000,
+        "name": "いわき市",
+        "population": 326000,
         "type": "city",
-        "prefecture": "宮城県"
+        "prefecture": "福島県"
       }
     },
     {
@@ -38,8 +38,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.6566,
-          35.8617
+          139.645502,
+          35.861515
         ]
       },
       "properties": {
@@ -54,15 +54,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          140.1062,
-          35.6047
+          140.0764732,
+          36.0835602
         ]
       },
       "properties": {
-        "name": "千葉市",
-        "population": 981000,
+        "name": "つくば市",
+        "population": 248000,
         "type": "city",
-        "prefecture": "千葉県"
+        "prefecture": "茨城県"
       }
     },
     {
@@ -70,15 +70,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7536,
-          35.694
+          140.534676,
+          36.396615
         ]
       },
       "properties": {
-        "name": "千代田区",
-        "population": 68000,
+        "name": "ひたちなか市",
+        "population": 156000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "茨城県"
       }
     },
     {
@@ -86,15 +86,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7717,
-          35.6706
+          139.51982,
+          35.879396
         ]
       },
       "properties": {
-        "name": "中央区",
-        "population": 172000,
+        "name": "ふじみ野市",
+        "population": 114000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "埼玉県"
       }
     },
     {
@@ -102,15 +102,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7514,
-          35.6581
+          136.802344,
+          35.304013
         ]
       },
       "properties": {
-        "name": "港区",
-        "population": 261000,
+        "name": "一宮市",
+        "population": 380000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "愛知県"
       }
     },
     {
@@ -118,15 +118,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7036,
-          35.6938
+          141.126759,
+          38.934754
         ]
       },
       "properties": {
-        "name": "新宿区",
-        "population": 350000,
+        "name": "一関市",
+        "population": 115000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "岩手県"
       }
     },
     {
@@ -134,15 +134,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7519,
-          35.7081
+          138.9617,
+          37.636768
         ]
       },
       "properties": {
-        "name": "文京区",
-        "population": 235000,
+        "name": "三条市",
+        "population": 95000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "新潟県"
       }
     },
     {
@@ -150,15 +150,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7797,
-          35.7072
+          139.872247,
+          35.830132
         ]
       },
       "properties": {
-        "name": "台東区",
-        "population": 211000,
+        "name": "三郷市",
+        "population": 143000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "埼玉県"
       }
     },
     {
@@ -166,29 +166,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.805,
-          35.71
+          139.559883,
+          35.683308
         ]
       },
       "properties": {
-        "name": "墨田区",
-        "population": 283000,
-        "type": "city",
-        "prefecture": "東京都"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.8172,
-          35.6731
-        ]
-      },
-      "properties": {
-        "name": "江東区",
-        "population": 527000,
+        "name": "三鷹市",
+        "population": 191000,
         "type": "city",
         "prefecture": "東京都"
       }
@@ -198,15 +182,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7303,
-          35.6092
+          139.593203,
+          35.977408
         ]
       },
       "properties": {
-        "name": "品川区",
-        "population": 416000,
+        "name": "上尾市",
+        "population": 226000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "埼玉県"
       }
     },
     {
@@ -214,15 +198,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.6983,
-          35.6419
+          138.249069,
+          36.401942
         ]
       },
       "properties": {
-        "name": "目黒区",
-        "population": 288000,
+        "name": "上田市",
+        "population": 154000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "長野県"
       }
     },
     {
@@ -230,15 +214,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7161,
-          35.5614
+          138.236039,
+          37.147873
         ]
       },
       "properties": {
-        "name": "大田区",
-        "population": 738000,
+        "name": "上越市",
+        "population": 187000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "新潟県"
       }
     },
     {
@@ -246,8 +230,24 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.6531,
-          35.6464
+          130.941459,
+          33.957828
+        ]
+      },
+      "properties": {
+        "name": "下関市",
+        "population": 254000,
+        "type": "city",
+        "prefecture": "山口県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.653208,
+          35.646481
         ]
       },
       "properties": {
@@ -262,13 +262,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7036,
-          35.6636
+          139.772003,
+          35.670587
         ]
       },
       "properties": {
-        "name": "渋谷区",
-        "population": 239000,
+        "name": "中央区",
+        "population": 172000,
         "type": "city",
         "prefecture": "東京都"
       }
@@ -278,8 +278,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.6636,
-          35.7075
+          139.663738,
+          35.707268
         ]
       },
       "properties": {
@@ -294,15 +294,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.6364,
-          35.6997
+          133.797716,
+          34.289482
         ]
       },
       "properties": {
-        "name": "杉並区",
-        "population": 589000,
+        "name": "丸亀市",
+        "population": 110000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "香川県"
       }
     },
     {
@@ -310,15 +310,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7158,
-          35.7322
+          139.666838,
+          36.062059
         ]
       },
       "properties": {
-        "name": "豊島区",
-        "population": 294000,
+        "name": "久喜市",
+        "population": 152000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "埼玉県"
       }
     },
     {
@@ -326,15 +326,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7333,
-          35.7539
+          130.508371,
+          33.319286
         ]
       },
       "properties": {
-        "name": "北区",
-        "population": 358000,
+        "name": "久留米市",
+        "population": 304000,
         "type": "city",
-        "prefecture": "東京都"
+        "prefecture": "福岡県"
       }
     },
     {
@@ -342,216 +342,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          139.7836,
-          35.7361
-        ]
-      },
-      "properties": {
-        "name": "荒川区",
-        "population": 218000,
-        "type": "city",
-        "prefecture": "東京都"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.7086,
-          35.7511
-        ]
-      },
-      "properties": {
-        "name": "板橋区",
-        "population": 580000,
-        "type": "city",
-        "prefecture": "東京都"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.6519,
-          35.7353
-        ]
-      },
-      "properties": {
-        "name": "練馬区",
-        "population": 752000,
-        "type": "city",
-        "prefecture": "東京都"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.8044,
-          35.7756
-        ]
-      },
-      "properties": {
-        "name": "足立区",
-        "population": 695000,
-        "type": "city",
-        "prefecture": "東京都"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.8483,
-          35.7436
-        ]
-      },
-      "properties": {
-        "name": "葛飾区",
-        "population": 464000,
-        "type": "city",
-        "prefecture": "東京都"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.8681,
-          35.7072
-        ]
-      },
-      "properties": {
-        "name": "江戸川区",
-        "population": 697000,
-        "type": "city",
-        "prefecture": "東京都"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.638,
-          35.4478
-        ]
-      },
-      "properties": {
-        "name": "横浜市",
-        "population": 3773000,
-        "type": "city",
-        "prefecture": "神奈川県"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.7025,
-          35.5308
-        ]
-      },
-      "properties": {
-        "name": "川崎市",
-        "population": 1538000,
-        "type": "city",
-        "prefecture": "神奈川県"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.3761,
-          35.5561
-        ]
-      },
-      "properties": {
-        "name": "相模原市",
-        "population": 725000,
-        "type": "city",
-        "prefecture": "神奈川県"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          139.0364,
-          37.9161
-        ]
-      },
-      "properties": {
-        "name": "新潟市",
-        "population": 779000,
-        "type": "city",
-        "prefecture": "新潟県"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          138.3831,
-          34.9756
-        ]
-      },
-      "properties": {
-        "name": "静岡市",
-        "population": 689000,
-        "type": "city",
-        "prefecture": "静岡県"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          137.7261,
-          34.7108
-        ]
-      },
-      "properties": {
-        "name": "浜松市",
-        "population": 789000,
-        "type": "city",
-        "prefecture": "静岡県"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          136.9067,
-          35.1802
-        ]
-      },
-      "properties": {
-        "name": "名古屋市",
-        "population": 2332000,
-        "type": "city",
-        "prefecture": "愛知県"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          135.7681,
-          35.0116
+          135.768181,
+          35.011574
         ]
       },
       "properties": {
@@ -566,15 +358,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          135.5022,
-          34.6937
+          132.997658,
+          34.066043
         ]
       },
       "properties": {
-        "name": "大阪市",
-        "population": 2755000,
+        "name": "今治市",
+        "population": 154000,
         "type": "city",
-        "prefecture": "大阪府"
+        "prefecture": "愛媛県"
       }
     },
     {
@@ -582,15 +374,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          135.4828,
-          34.5733
+          140.869617,
+          38.268008
         ]
       },
       "properties": {
-        "name": "堺市",
-        "population": 820000,
+        "name": "仙台市",
+        "population": 1097000,
         "type": "city",
-        "prefecture": "大阪府"
+        "prefecture": "宮城県"
       }
     },
     {
@@ -598,13 +390,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          135.1955,
-          34.6901
+          135.400933,
+          34.784295
         ]
       },
       "properties": {
-        "name": "神戸市",
-        "population": 1518000,
+        "name": "伊丹市",
+        "population": 198000,
         "type": "city",
         "prefecture": "兵庫県"
       }
@@ -614,13 +406,157 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          133.9192,
-          34.6551
+          139.19696,
+          36.311341
         ]
       },
       "properties": {
-        "name": "岡山市",
-        "population": 721000,
+        "name": "伊勢崎市",
+        "population": 213000,
+        "type": "city",
+        "prefecture": "群馬県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.102048,
+          34.96568
+        ]
+      },
+      "properties": {
+        "name": "伊東市",
+        "population": 67000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.928885,
+          35.027713
+        ]
+      },
+      "properties": {
+        "name": "伊豆の国市",
+        "population": 48000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.946715,
+          34.976591
+        ]
+      },
+      "properties": {
+        "name": "伊豆市",
+        "population": 30000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.929707,
+          37.494842
+        ]
+      },
+      "properties": {
+        "name": "会津若松市",
+        "population": 117000,
+        "type": "city",
+        "prefecture": "福島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          129.7150901,
+          33.1799042
+        ]
+      },
+      "properties": {
+        "name": "佐世保市",
+        "population": 244000,
+        "type": "city",
+        "prefecture": "長崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.223972,
+          35.723441
+        ]
+      },
+      "properties": {
+        "name": "佐倉市",
+        "population": 172000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.300835,
+          33.263543
+        ]
+      },
+      "properties": {
+        "name": "佐賀市",
+        "population": 232000,
+        "type": "city",
+        "prefecture": "佐賀県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.593134,
+          36.308603
+        ]
+      },
+      "properties": {
+        "name": "佐野市",
+        "population": 116000,
+        "type": "city",
+        "prefecture": "栃木県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.772281,
+          34.584677
+        ]
+      },
+      "properties": {
+        "name": "倉敷市",
+        "population": 478000,
         "type": "city",
         "prefecture": "岡山県"
       }
@@ -630,15 +566,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          132.4595,
-          34.3853
+          130.601888,
+          32.507412
         ]
       },
       "properties": {
-        "name": "広島市",
-        "population": 1201000,
+        "name": "八代市",
+        "population": 122000,
         "type": "city",
-        "prefecture": "広島県"
+        "prefecture": "熊本県"
       }
     },
     {
@@ -646,8 +582,184 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.8754,
-          33.8834
+          135.600948,
+          34.626884
+        ]
+      },
+      "properties": {
+        "name": "八尾市",
+        "population": 263000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.488404,
+          40.512278
+        ]
+      },
+      "properties": {
+        "name": "八戸市",
+        "population": 221000,
+        "type": "city",
+        "prefecture": "青森県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.839175,
+          35.822539
+        ]
+      },
+      "properties": {
+        "name": "八潮市",
+        "population": 93000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.316075,
+          35.66657
+        ]
+      },
+      "properties": {
+        "name": "八王子市",
+        "population": 577000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.317913,
+          35.665859
+        ]
+      },
+      "properties": {
+        "name": "八街市",
+        "population": 69000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.729108,
+          41.768712
+        ]
+      },
+      "properties": {
+        "name": "函館市",
+        "population": 245000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.00206,
+          34.988864
+        ]
+      },
+      "properties": {
+        "name": "刈谷市",
+        "population": 153000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.063493,
+          36.389413
+        ]
+      },
+      "properties": {
+        "name": "前橋市",
+        "population": 331000,
+        "type": "city",
+        "prefecture": "群馬県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.8409,
+          34.75662
+        ]
+      },
+      "properties": {
+        "name": "加古川市",
+        "population": 260000,
+        "type": "city",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.601775,
+          36.131438
+        ]
+      },
+      "properties": {
+        "name": "加須市",
+        "population": 112000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.113157,
+          39.286817
+        ]
+      },
+      "properties": {
+        "name": "北上市",
+        "population": 92000,
+        "type": "city",
+        "prefecture": "岩手県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.875183,
+          33.883408
         ]
       },
       "properties": {
@@ -662,8 +774,2616 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.4017,
-          33.5904
+          139.733657,
+          35.752805
+        ]
+      },
+      "properties": {
+        "name": "北区",
+        "population": 358000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.563625,
+          42.985663
+        ]
+      },
+      "properties": {
+        "name": "北広島市",
+        "population": 59000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.53024,
+          36.027026
+        ]
+      },
+      "properties": {
+        "name": "北本市",
+        "population": 66000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.894384,
+          43.807823
+        ]
+      },
+      "properties": {
+        "name": "北見市",
+        "population": 114000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.564356,
+          35.707914
+        ]
+      },
+      "properties": {
+        "name": "匝瑳市",
+        "population": 35000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.753634,
+          35.694003
+        ]
+      },
+      "properties": {
+        "name": "千代田区",
+        "population": 68000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.651139,
+          42.821124
+        ]
+      },
+      "properties": {
+        "name": "千歳市",
+        "population": 97000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.10638,
+          35.607331
+        ]
+      },
+      "properties": {
+        "name": "千葉市",
+        "population": 981000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.839997,
+          35.043147
+        ]
+      },
+      "properties": {
+        "name": "南房総市",
+        "population": 36000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.145765,
+          35.832332
+        ]
+      },
+      "properties": {
+        "name": "印西市",
+        "population": 107000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.362442,
+          35.443049
+        ]
+      },
+      "properties": {
+        "name": "厚木市",
+        "population": 225000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.755371,
+          36.178228
+        ]
+      },
+      "properties": {
+        "name": "古河市",
+        "population": 139000,
+        "type": "city",
+        "prefecture": "茨城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.779984,
+          35.712607
+        ]
+      },
+      "properties": {
+        "name": "台東区",
+        "population": 211000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.841328,
+          35.891124
+        ]
+      },
+      "properties": {
+        "name": "吉川市",
+        "population": 73000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.906421,
+          35.181433
+        ]
+      },
+      "properties": {
+        "name": "名古屋市",
+        "population": 2332000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.902561,
+          35.330424
+        ]
+      },
+      "properties": {
+        "name": "君津市",
+        "population": 83000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.516799,
+          34.759405
+        ]
+      },
+      "properties": {
+        "name": "吹田市",
+        "population": 384000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.565805,
+          34.249254
+        ]
+      },
+      "properties": {
+        "name": "呉市",
+        "population": 209000,
+        "type": "city",
+        "prefecture": "広島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.170808,
+          34.230514
+        ]
+      },
+      "properties": {
+        "name": "和歌山市",
+        "population": 355000,
+        "type": "city",
+        "prefecture": "和歌山県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.73025,
+          35.609066
+        ]
+      },
+      "properties": {
+        "name": "品川区",
+        "population": 416000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          129.96797,
+          33.450103
+        ]
+      },
+      "properties": {
+        "name": "唐津市",
+        "population": 116000,
+        "type": "city",
+        "prefecture": "佐賀県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.624427,
+          34.965092
+        ]
+      },
+      "properties": {
+        "name": "四日市市",
+        "population": 310000,
+        "type": "city",
+        "prefecture": "三重県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.462252,
+          35.710943
+        ]
+      },
+      "properties": {
+        "name": "国分寺市",
+        "population": 127000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.196057,
+          36.07187
+        ]
+      },
+      "properties": {
+        "name": "土浦市",
+        "population": 143000,
+        "type": "city",
+        "prefecture": "茨城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.402983,
+          35.957262
+        ]
+      },
+      "properties": {
+        "name": "坂戸市",
+        "population": 101000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.48302,
+          34.573354
+        ]
+      },
+      "properties": {
+        "name": "堺市",
+        "population": 820000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.801497,
+          35.710724
+        ]
+      },
+      "properties": {
+        "name": "墨田区",
+        "population": 283000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.446366,
+          35.636959
+        ]
+      },
+      "properties": {
+        "name": "多摩市",
+        "population": 148000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.475448,
+          39.45309
+        ]
+      },
+      "properties": {
+        "name": "大仙市",
+        "population": 78000,
+        "type": "city",
+        "prefecture": "秋田県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.609377,
+          33.239526
+        ]
+      },
+      "properties": {
+        "name": "大分市",
+        "population": 478000,
+        "type": "city",
+        "prefecture": "大分県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.45795,
+          35.487515
+        ]
+      },
+      "properties": {
+        "name": "大和市",
+        "population": 242000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.955565,
+          38.577132
+        ]
+      },
+      "properties": {
+        "name": "大崎市",
+        "population": 126000,
+        "type": "city",
+        "prefecture": "宮城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.854666,
+          35.018357
+        ]
+      },
+      "properties": {
+        "name": "大津市",
+        "population": 345000,
+        "type": "city",
+        "prefecture": "滋賀県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.715987,
+          35.56126
+        ]
+      },
+      "properties": {
+        "name": "大田区",
+        "population": 738000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.320963,
+          35.521708
+        ]
+      },
+      "properties": {
+        "name": "大網白里市",
+        "population": 49000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.502046,
+          34.693891
+        ]
+      },
+      "properties": {
+        "name": "大阪市",
+        "population": 2755000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.37536,
+          36.291127
+        ]
+      },
+      "properties": {
+        "name": "太田市",
+        "population": 224000,
+        "type": "city",
+        "prefecture": "群馬県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.804995,
+          34.685117
+        ]
+      },
+      "properties": {
+        "name": "奈良市",
+        "population": 354000,
+        "type": "city",
+        "prefecture": "奈良県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.139116,
+          39.144506
+        ]
+      },
+      "properties": {
+        "name": "奥州市",
+        "population": 114000,
+        "type": "city",
+        "prefecture": "岩手県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.685458,
+          34.815496
+        ]
+      },
+      "properties": {
+        "name": "姫路市",
+        "population": 526000,
+        "type": "city",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.79978,
+          34.8844
+        ]
+      },
+      "properties": {
+        "name": "宇治市",
+        "population": 179000,
+        "type": "city",
+        "prefecture": "京都府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.882807,
+          36.555115
+        ]
+      },
+      "properties": {
+        "name": "宇都宮市",
+        "population": 519000,
+        "type": "city",
+        "prefecture": "栃木県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.080297,
+          34.958644
+        ]
+      },
+      "properties": {
+        "name": "安城市",
+        "population": 189000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.360098,
+          34.799817
+        ]
+      },
+      "properties": {
+        "name": "宝塚市",
+        "population": 225000,
+        "type": "city",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.973784,
+          42.315204
+        ]
+      },
+      "properties": {
+        "name": "室蘭市",
+        "population": 81000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.420244,
+          31.907676
+        ]
+      },
+      "properties": {
+        "name": "宮崎市",
+        "population": 401000,
+        "type": "city",
+        "prefecture": "宮崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.621656,
+          35.221983
+        ]
+      },
+      "properties": {
+        "name": "富士宮市",
+        "population": 131000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.676311,
+          35.161386
+        ]
+      },
+      "properties": {
+        "name": "富士市",
+        "population": 248000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.549074,
+          35.856759
+        ]
+      },
+      "properties": {
+        "name": "富士見市",
+        "population": 112000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.213449,
+          36.695982
+        ]
+      },
+      "properties": {
+        "name": "富山市",
+        "population": 415000,
+        "type": "city",
+        "prefecture": "富山県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.857113,
+          35.30414
+        ]
+      },
+      "properties": {
+        "name": "富津市",
+        "population": 43000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.343071,
+          35.72681
+        ]
+      },
+      "properties": {
+        "name": "富里市",
+        "population": 50000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.628008,
+          34.766079
+        ]
+      },
+      "properties": {
+        "name": "寝屋川市",
+        "population": 228000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.800132,
+          36.314477
+        ]
+      },
+      "properties": {
+        "name": "小山市",
+        "population": 167000,
+        "type": "city",
+        "prefecture": "栃木県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.477474,
+          35.728496
+        ]
+      },
+      "properties": {
+        "name": "小平市",
+        "population": 196000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.9946054,
+          43.1907527
+        ]
+      },
+      "properties": {
+        "name": "小樽市",
+        "population": 111000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.911971,
+          35.291141
+        ]
+      },
+      "properties": {
+        "name": "小牧市",
+        "population": 149000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.152355,
+          35.264694
+        ]
+      },
+      "properties": {
+        "name": "小田原市",
+        "population": 188000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.502989,
+          35.699479
+        ]
+      },
+      "properties": {
+        "name": "小金井市",
+        "population": 124000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.406394,
+          34.733554
+        ]
+      },
+      "properties": {
+        "name": "尼崎市",
+        "population": 455000,
+        "type": "city",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.339605,
+          38.255436
+        ]
+      },
+      "properties": {
+        "name": "山形市",
+        "population": 245000,
+        "type": "city",
+        "prefecture": "山形県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.413531,
+          35.602992
+        ]
+      },
+      "properties": {
+        "name": "山武市",
+        "population": 49000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.760657,
+          35.423301
+        ]
+      },
+      "properties": {
+        "name": "岐阜市",
+        "population": 401000,
+        "type": "city",
+        "prefecture": "岐阜県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.919566,
+          34.655107
+        ]
+      },
+      "properties": {
+        "name": "岡山市",
+        "population": 721000,
+        "type": "city",
+        "prefecture": "岡山県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.172999,
+          34.954809
+        ]
+      },
+      "properties": {
+        "name": "岡崎市",
+        "population": 387000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.370871,
+          34.460597
+        ]
+      },
+      "properties": {
+        "name": "岸和田市",
+        "population": 192000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.176055,
+          34.836417
+        ]
+      },
+      "properties": {
+        "name": "島田市",
+        "population": 96000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.724171,
+          35.807741
+        ]
+      },
+      "properties": {
+        "name": "川口市",
+        "population": 607000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.703012,
+          35.530806
+        ]
+      },
+      "properties": {
+        "name": "川崎市",
+        "population": 1538000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.417222,
+          34.830132
+        ]
+      },
+      "properties": {
+        "name": "川西市",
+        "population": 155000,
+        "type": "city",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.48584,
+          35.925112
+        ]
+      },
+      "properties": {
+        "name": "川越市",
+        "population": 353000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.115594,
+          35.497897
+        ]
+      },
+      "properties": {
+        "name": "市原市",
+        "population": 272000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.931013,
+          35.721914
+        ]
+      },
+      "properties": {
+        "name": "市川市",
+        "population": 498000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          143.196195,
+          42.924014
+        ]
+      },
+      "properties": {
+        "name": "帯広市",
+        "population": 165000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.349412,
+          35.335502
+        ]
+      },
+      "properties": {
+        "name": "平塚市",
+        "population": 257000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.725805,
+          36.078089
+        ]
+      },
+      "properties": {
+        "name": "幸手市",
+        "population": 51000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.455337,
+          34.385253
+        ]
+      },
+      "properties": {
+        "name": "広島市",
+        "population": 1201000,
+        "type": "city",
+        "prefecture": "広島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.477663,
+          35.668921
+        ]
+      },
+      "properties": {
+        "name": "府中市",
+        "population": 260000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.664859,
+          32.582401
+        ]
+      },
+      "properties": {
+        "name": "延岡市",
+        "population": 116000,
+        "type": "city",
+        "prefecture": "宮崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.464008,
+          40.602965
+        ]
+      },
+      "properties": {
+        "name": "弘前市",
+        "population": 168000,
+        "type": "city",
+        "prefecture": "青森県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.128117,
+          34.637977
+        ]
+      },
+      "properties": {
+        "name": "御前崎市",
+        "population": 32000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.934506,
+          35.308615
+        ]
+      },
+      "properties": {
+        "name": "御殿場市",
+        "population": 88000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.554713,
+          34.070234
+        ]
+      },
+      "properties": {
+        "name": "徳島市",
+        "population": 255000,
+        "type": "city",
+        "prefecture": "徳島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.577799,
+          42.882592
+        ]
+      },
+      "properties": {
+        "name": "恵庭市",
+        "population": 70000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.318781,
+          35.776605
+        ]
+      },
+      "properties": {
+        "name": "成田市",
+        "population": 132000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.028225,
+          35.864162
+        ]
+      },
+      "properties": {
+        "name": "我孫子市",
+        "population": 131000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.468613,
+          35.799672
+        ]
+      },
+      "properties": {
+        "name": "所沢市",
+        "population": 344000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.998403,
+          34.768717
+        ]
+      },
+      "properties": {
+        "name": "掛川市",
+        "population": 117000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.752473,
+          35.707976
+        ]
+      },
+      "properties": {
+        "name": "文京区",
+        "population": 235000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.703463,
+          35.69389
+        ]
+      },
+      "properties": {
+        "name": "新宿区",
+        "population": 350000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.283379,
+          33.960329
+        ]
+      },
+      "properties": {
+        "name": "新居浜市",
+        "population": 116000,
+        "type": "city",
+        "prefecture": "愛媛県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.036402,
+          37.916128
+        ]
+      },
+      "properties": {
+        "name": "新潟市",
+        "population": 779000,
+        "type": "city",
+        "prefecture": "新潟県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.378731,
+          31.601932
+        ]
+      },
+      "properties": {
+        "name": "日南市",
+        "population": 48000,
+        "type": "city",
+        "prefecture": "宮崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.651546,
+          36.599016
+        ]
+      },
+      "properties": {
+        "name": "日立市",
+        "population": 174000,
+        "type": "city",
+        "prefecture": "茨城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.394981,
+          35.671347
+        ]
+      },
+      "properties": {
+        "name": "日野市",
+        "population": 187000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.33914,
+          35.907748
+        ]
+      },
+      "properties": {
+        "name": "日高市",
+        "population": 55000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          142.364798,
+          43.770799
+        ]
+      },
+      "properties": {
+        "name": "旭川市",
+        "population": 324000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.64659,
+          35.720454
+        ]
+      },
+      "properties": {
+        "name": "旭市",
+        "population": 64000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.997182,
+          34.643109
+        ]
+      },
+      "properties": {
+        "name": "明石市",
+        "population": 304000,
+        "type": "city",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.972232,
+          35.247664
+        ]
+      },
+      "properties": {
+        "name": "春日井市",
+        "population": 310000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.752409,
+          35.975305
+        ]
+      },
+      "properties": {
+        "name": "春日部市",
+        "population": 232000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.353773,
+          35.705705
+        ]
+      },
+      "properties": {
+        "name": "昭島市",
+        "population": 113000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.916884,
+          35.375969
+        ]
+      },
+      "properties": {
+        "name": "木更津市",
+        "population": 136000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.190629,
+          36.243329
+        ]
+      },
+      "properties": {
+        "name": "本庄市",
+        "population": 76000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.354374,
+          43.061972
+        ]
+      },
+      "properties": {
+        "name": "札幌市",
+        "population": 1974000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.636414,
+          35.699546
+        ]
+      },
+      "properties": {
+        "name": "杉並区",
+        "population": 589000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.529673,
+          35.757992
+        ]
+      },
+      "properties": {
+        "name": "東久留米市",
+        "population": 116000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.426591,
+          35.745328
+        ]
+      },
+      "properties": {
+        "name": "東大和市",
+        "population": 85000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.600898,
+          34.679324
+        ]
+      },
+      "properties": {
+        "name": "東大阪市",
+        "population": 487000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.468484,
+          35.754624
+        ]
+      },
+      "properties": {
+        "name": "東村山市",
+        "population": 151000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.39995,
+          36.042162
+        ]
+      },
+      "properties": {
+        "name": "東松山市",
+        "population": 92000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.366115,
+          35.559932
+        ]
+      },
+      "properties": {
+        "name": "東金市",
+        "population": 59000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.765556,
+          33.839157
+        ]
+      },
+      "properties": {
+        "name": "松山市",
+        "population": 509000,
+        "type": "city",
+        "prefecture": "愛媛県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.903226,
+          35.787652
+        ]
+      },
+      "properties": {
+        "name": "松戸市",
+        "population": 498000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.971992,
+          36.238096
+        ]
+      },
+      "properties": {
+        "name": "松本市",
+        "population": 239000,
+        "type": "city",
+        "prefecture": "長野県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.048527,
+          35.468039
+        ]
+      },
+      "properties": {
+        "name": "松江市",
+        "population": 202000,
+        "type": "city",
+        "prefecture": "島根県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.527595,
+          34.577974
+        ]
+      },
+      "properties": {
+        "name": "松阪市",
+        "population": 158000,
+        "type": "city",
+        "prefecture": "三重県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.709246,
+          35.751245
+        ]
+      },
+      "properties": {
+        "name": "板橋区",
+        "population": 580000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.650642,
+          34.814465
+        ]
+      },
+      "properties": {
+        "name": "枚方市",
+        "population": 396000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.976199,
+          35.868295
+        ]
+      },
+      "properties": {
+        "name": "柏市",
+        "population": 432000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7341111,
+          36.3824139
+        ]
+      },
+      "properties": {
+        "name": "栃木市",
+        "population": 158000,
+        "type": "city",
+        "prefecture": "栃木県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.330646,
+          36.40521
+        ]
+      },
+      "properties": {
+        "name": "桐生市",
+        "population": 106000,
+        "type": "city",
+        "prefecture": "群馬県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.637954,
+          35.444035
+        ]
+      },
+      "properties": {
+        "name": "横浜市",
+        "population": 3773000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.672284,
+          35.281276
+        ]
+      },
+      "properties": {
+        "name": "横須賀市",
+        "population": 381000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.387421,
+          35.754906
+        ]
+      },
+      "properties": {
+        "name": "武蔵村山市",
+        "population": 71000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.565938,
+          35.717837
+        ]
+      },
+      "properties": {
+        "name": "武蔵野市",
+        "population": 147000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.471222,
+          36.365861
+        ]
+      },
+      "properties": {
+        "name": "水戸市",
+        "population": 271000,
+        "type": "city",
+        "prefecture": "茨城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.536103,
+          43.103666
+        ]
+      },
+      "properties": {
+        "name": "江別市",
+        "population": 118000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.868312,
+          35.706648
+        ]
+      },
+      "properties": {
+        "name": "江戸川区",
+        "population": 697000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.817365,
+          35.672859
+        ]
+      },
+      "properties": {
+        "name": "江東区",
+        "population": 527000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.805694,
+          26.334354
+        ]
+      },
+      "properties": {
+        "name": "沖縄市",
+        "population": 143000,
+        "type": "city",
+        "prefecture": "沖縄県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.863337,
+          35.095723
+        ]
+      },
+      "properties": {
+        "name": "沼津市",
+        "population": 189000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.004543,
+          35.069118
+        ]
+      },
+      "properties": {
+        "name": "津山市",
+        "population": 99000,
+        "type": "city",
+        "prefecture": "岡山県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.505443,
+          34.718563
+        ]
+      },
+      "properties": {
+        "name": "津市",
+        "population": 274000,
+        "type": "city",
+        "prefecture": "三重県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.902586,
+          35.856287
+        ]
+      },
+      "properties": {
+        "name": "流山市",
+        "population": 204000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.726117,
+          34.710865
+        ]
+      },
+      "properties": {
+        "name": "浜松市",
+        "population": 789000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.902187,
+          35.653988
+        ]
+      },
+      "properties": {
+        "name": "浦安市",
+        "population": 171000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.721804,
+          26.245816
+        ]
+      },
+      "properties": {
+        "name": "浦添市",
+        "population": 115000,
+        "type": "city",
+        "prefecture": "沖縄県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.28147,
+          36.197466
+        ]
+      },
+      "properties": {
+        "name": "深谷市",
+        "population": 142000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.526422,
+          35.785761
+        ]
+      },
+      "properties": {
+        "name": "清瀬市",
+        "population": 75000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.000394,
+          36.48948
+        ]
+      },
+      "properties": {
+        "name": "渋川市",
+        "population": 74000,
+        "type": "city",
+        "prefecture": "群馬県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.697948,
+          35.663982
+        ]
+      },
+      "properties": {
+        "name": "渋谷区",
+        "population": 239000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.751599,
+          35.658071
+        ]
+      },
+      "properties": {
+        "name": "港区",
+        "population": 261000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.531617,
+          34.718474
+        ]
+      },
+      "properties": {
+        "name": "湖西市",
+        "population": 59000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.32326,
+          34.866906
+        ]
+      },
+      "properties": {
+        "name": "焼津市",
+        "population": 138000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.707897,
+          32.803078
+        ]
+      },
+      "properties": {
+        "name": "熊本市",
+        "population": 738000,
+        "type": "city",
+        "prefecture": "熊本県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.388664,
+          36.147362
+        ]
+      },
+      "properties": {
+        "name": "熊谷市",
+        "population": 195000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.578696,
+          35.634814
+        ]
+      },
+      "properties": {
+        "name": "狛江市",
+        "population": 84000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.412227,
+          35.852907
+        ]
+      },
+      "properties": {
+        "name": "狭山市",
+        "population": 147000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.5683386,
+          35.6620333
+        ]
+      },
+      "properties": {
+        "name": "甲府市",
+        "population": 188000,
+        "type": "city",
+        "prefecture": "山梨県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.438527,
+          35.546559
+        ]
+      },
+      "properties": {
+        "name": "町田市",
+        "population": 429000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.056372,
+          35.791503
+        ]
+      },
+      "properties": {
+        "name": "白井市",
+        "population": 63000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.676861,
+          36.01907
+        ]
+      },
+      "properties": {
+        "name": "白岡市",
+        "population": 52000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.210923,
+          37.126379
+        ]
+      },
+      "properties": {
+        "name": "白河市",
+        "population": 59000,
+        "type": "city",
+        "prefecture": "福島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.154183,
+          39.701795
+        ]
+      },
+      "properties": {
+        "name": "盛岡市",
+        "population": 286000,
+        "type": "city",
+        "prefecture": "岩手県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.698118,
+          35.64141
+        ]
+      },
+      "properties": {
+        "name": "目黒区",
+        "population": 288000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.373268,
+          35.571376
+        ]
+      },
+      "properties": {
+        "name": "相模原市",
+        "population": 725000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.302906,
+          38.434457
+        ]
+      },
+      "properties": {
+        "name": "石巻市",
+        "population": 138000,
+        "type": "city",
+        "prefecture": "宮城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.315514,
+          43.171365
+        ]
+      },
+      "properties": {
+        "name": "石狩市",
+        "population": 58000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.851511,
+          34.717881
+        ]
+      },
+      "properties": {
+        "name": "磐田市",
+        "population": 167000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.195728,
+          34.689495
+        ]
+      },
+      "properties": {
+        "name": "神戸市",
+        "population": 1518000,
+        "type": "city",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.219452,
+          36.06412
+        ]
+      },
+      "properties": {
+        "name": "福井市",
+        "population": 262000,
+        "type": "city",
+        "prefecture": "福井県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.36234,
+          34.485927
+        ]
+      },
+      "properties": {
+        "name": "福山市",
+        "population": 463000,
+        "type": "city",
+        "prefecture": "広島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.401735,
+          33.590313
         ]
       },
       "properties": {
@@ -678,15 +3398,1151 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          130.7414,
-          32.8032
+          140.473269,
+          37.760759
         ]
       },
       "properties": {
-        "name": "熊本市",
-        "population": 738000,
+        "name": "福島市",
+        "population": 278000,
         "type": "city",
-        "prefecture": "熊本県"
+        "prefecture": "福島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.102512,
+          39.719929
+        ]
+      },
+      "properties": {
+        "name": "秋田市",
+        "population": 300000,
+        "type": "city",
+        "prefecture": "秋田県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.504603,
+          35.637938
+        ]
+      },
+      "properties": {
+        "name": "稲城市",
+        "population": 93000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.780216,
+          35.248135
+        ]
+      },
+      "properties": {
+        "name": "稲沢市",
+        "population": 135000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.407846,
+          35.713981
+        ]
+      },
+      "properties": {
+        "name": "立川市",
+        "population": 184000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.983069,
+          36.307115
+        ]
+      },
+      "properties": {
+        "name": "筑西市",
+        "population": 100000,
+        "type": "city",
+        "prefecture": "茨城県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.273422,
+          44.020631
+        ]
+      },
+      "properties": {
+        "name": "網走市",
+        "population": 35000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.651725,
+          35.7356
+        ]
+      },
+      "properties": {
+        "name": "練馬区",
+        "population": 752000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.548592,
+          36.172667
+        ]
+      },
+      "properties": {
+        "name": "羽生市",
+        "population": 54000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.024384,
+          35.682932
+        ]
+      },
+      "properties": {
+        "name": "習志野市",
+        "population": 175000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.982621,
+          35.694711
+        ]
+      },
+      "properties": {
+        "name": "船橋市",
+        "population": 644000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.116854,
+          39.388609
+        ]
+      },
+      "properties": {
+        "name": "花巻市",
+        "population": 94000,
+        "type": "city",
+        "prefecture": "岩手県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.605503,
+          42.634094
+        ]
+      },
+      "properties": {
+        "name": "苫小牧市",
+        "population": 170000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.28805,
+          35.42854
+        ]
+      },
+      "properties": {
+        "name": "茂原市",
+        "population": 88000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.404702,
+          35.333879
+        ]
+      },
+      "properties": {
+        "name": "茅ヶ崎市",
+        "population": 244000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.568503,
+          34.816153
+        ]
+      },
+      "properties": {
+        "name": "茨木市",
+        "population": 283000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.805327,
+          35.825371
+        ]
+      },
+      "properties": {
+        "name": "草加市",
+        "population": 249000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.959994,
+          35.013123
+        ]
+      },
+      "properties": {
+        "name": "草津市",
+        "population": 141000,
+        "type": "city",
+        "prefecture": "滋賀県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.783372,
+          35.736083
+        ]
+      },
+      "properties": {
+        "name": "荒川区",
+        "population": 218000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.084539,
+          34.757721
+        ]
+      },
+      "properties": {
+        "name": "菊川市",
+        "population": 48000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.847213,
+          35.74343
+        ]
+      },
+      "properties": {
+        "name": "葛飾区",
+        "population": 464000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.6622,
+          35.994504
+        ]
+      },
+      "properties": {
+        "name": "蓮田市",
+        "population": 62000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.257548,
+          34.867349
+        ]
+      },
+      "properties": {
+        "name": "藤枝市",
+        "population": 145000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.491116,
+          35.33894
+        ]
+      },
+      "properties": {
+        "name": "藤沢市",
+        "population": 438000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.924624,
+          34.75016
+        ]
+      },
+      "properties": {
+        "name": "袋井市",
+        "population": 89000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.954353,
+          35.429945
+        ]
+      },
+      "properties": {
+        "name": "袖ケ浦市",
+        "population": 65000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.906724,
+          35.173891
+        ]
+      },
+      "properties": {
+        "name": "裾野市",
+        "population": 51000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.34183,
+          34.737691
+        ]
+      },
+      "properties": {
+        "name": "西宮市",
+        "population": 487000,
+        "type": "city",
+        "prefecture": "兵庫県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.061741,
+          34.862009
+        ]
+      },
+      "properties": {
+        "name": "西尾市",
+        "population": 170000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.538159,
+          35.725499
+        ]
+      },
+      "properties": {
+        "name": "西東京市",
+        "population": 207000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.540683,
+          35.650628
+        ]
+      },
+      "properties": {
+        "name": "調布市",
+        "population": 238000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.053601,
+          32.844208
+        ]
+      },
+      "properties": {
+        "name": "諫早市",
+        "population": 136000,
+        "type": "city",
+        "prefecture": "長崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.469889,
+          34.781239
+        ]
+      },
+      "properties": {
+        "name": "豊中市",
+        "population": 400000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.715469,
+          35.732437
+        ]
+      },
+      "properties": {
+        "name": "豊島区",
+        "population": 294000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.375578,
+          34.826784
+        ]
+      },
+      "properties": {
+        "name": "豊川市",
+        "population": 184000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.391469,
+          34.769199
+        ]
+      },
+      "properties": {
+        "name": "豊橋市",
+        "population": 374000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.156224,
+          35.082345
+        ]
+      },
+      "properties": {
+        "name": "豊田市",
+        "population": 423000,
+        "type": "city",
+        "prefecture": "愛知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.790943,
+          35.891087
+        ]
+      },
+      "properties": {
+        "name": "越谷市",
+        "population": 345000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.804584,
+          35.774945
+        ]
+      },
+      "properties": {
+        "name": "足立区",
+        "population": 695000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.679218,
+          26.212295
+        ]
+      },
+      "properties": {
+        "name": "那覇市",
+        "population": 321000,
+        "type": "city",
+        "prefecture": "沖縄県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.35965,
+          37.400455
+        ]
+      },
+      "properties": {
+        "name": "郡山市",
+        "population": 323000,
+        "type": "city",
+        "prefecture": "福島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.061497,
+          31.719519
+        ]
+      },
+      "properties": {
+        "name": "都城市",
+        "population": 162000,
+        "type": "city",
+        "prefecture": "宮崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.836513,
+          38.914386
+        ]
+      },
+      "properties": {
+        "name": "酒田市",
+        "population": 100000,
+        "type": "city",
+        "prefecture": "山形県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.874828,
+          35.955106
+        ]
+      },
+      "properties": {
+        "name": "野田市",
+        "population": 154000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.656633,
+          36.561051
+        ]
+      },
+      "properties": {
+        "name": "金沢市",
+        "population": 466000,
+        "type": "city",
+        "prefecture": "石川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.38167,
+          42.984856
+        ]
+      },
+      "properties": {
+        "name": "釧路市",
+        "population": 163000,
+        "type": "city",
+        "prefecture": "北海道"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.584185,
+          34.881866
+        ]
+      },
+      "properties": {
+        "name": "鈴鹿市",
+        "population": 196000,
+        "type": "city",
+        "prefecture": "三重県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.826791,
+          35.734667
+        ]
+      },
+      "properties": {
+        "name": "銚子市",
+        "population": 58000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.54669,
+          35.319228
+        ]
+      },
+      "properties": {
+        "name": "鎌倉市",
+        "population": 172000,
+        "type": "city",
+        "prefecture": "神奈川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.851224,
+          37.446587
+        ]
+      },
+      "properties": {
+        "name": "長岡市",
+        "population": 265000,
+        "type": "city",
+        "prefecture": "新潟県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          129.877906,
+          32.750311
+        ]
+      },
+      "properties": {
+        "name": "長崎市",
+        "population": 407000,
+        "type": "city",
+        "prefecture": "長崎県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.1942866,
+          36.648631
+        ]
+      },
+      "properties": {
+        "name": "長野市",
+        "population": 369000,
+        "type": "city",
+        "prefecture": "長野県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.763136,
+          31.741015
+        ]
+      },
+      "properties": {
+        "name": "霧島市",
+        "population": 124000,
+        "type": "city",
+        "prefecture": "鹿児島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.274994,
+          35.788171
+        ]
+      },
+      "properties": {
+        "name": "青梅市",
+        "population": 132000,
+        "type": "city",
+        "prefecture": "東京都"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.74732,
+          40.822358
+        ]
+      },
+      "properties": {
+        "name": "青森市",
+        "population": 270000,
+        "type": "city",
+        "prefecture": "青森県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.382388,
+          34.975473
+        ]
+      },
+      "properties": {
+        "name": "静岡市",
+        "population": 689000,
+        "type": "city",
+        "prefecture": "静岡県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.354272,
+          37.289441
+        ]
+      },
+      "properties": {
+        "name": "須賀川市",
+        "population": 75000,
+        "type": "city",
+        "prefecture": "福島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.870085,
+          34.996608
+        ]
+      },
+      "properties": {
+        "name": "館山市",
+        "population": 46000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.542057,
+          36.244841
+        ]
+      },
+      "properties": {
+        "name": "館林市",
+        "population": 75000,
+        "type": "city",
+        "prefecture": "群馬県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.499248,
+          35.89773
+        ]
+      },
+      "properties": {
+        "name": "香取市",
+        "population": 73000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.025717,
+          36.754099
+        ]
+      },
+      "properties": {
+        "name": "高岡市",
+        "population": 165000,
+        "type": "city",
+        "prefecture": "富山県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.003355,
+          36.32195
+        ]
+      },
+      "properties": {
+        "name": "高崎市",
+        "population": 372000,
+        "type": "city",
+        "prefecture": "群馬県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.046574,
+          34.342791
+        ]
+      },
+      "properties": {
+        "name": "高松市",
+        "population": 416000,
+        "type": "city",
+        "prefecture": "香川県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.617216,
+          34.8461
+        ]
+      },
+      "properties": {
+        "name": "高槻市",
+        "population": 348000,
+        "type": "city",
+        "prefecture": "大阪府"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.531166,
+          33.558788
+        ]
+      },
+      "properties": {
+        "name": "高知市",
+        "population": 327000,
+        "type": "city",
+        "prefecture": "高知県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.235091,
+          35.501133
+        ]
+      },
+      "properties": {
+        "name": "鳥取市",
+        "population": 186000,
+        "type": "city",
+        "prefecture": "鳥取県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.098805,
+          35.114017
+        ]
+      },
+      "properties": {
+        "name": "鴨川市",
+        "population": 32000,
+        "type": "city",
+        "prefecture": "千葉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.522172,
+          36.065758
+        ]
+      },
+      "properties": {
+        "name": "鴻巣市",
+        "population": 117000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.393126,
+          35.934523
+        ]
+      },
+      "properties": {
+        "name": "鶴ヶ島市",
+        "population": 70000,
+        "type": "city",
+        "prefecture": "埼玉県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.826725,
+          38.727183
+        ]
+      },
+      "properties": {
+        "name": "鶴岡市",
+        "population": 123000,
+        "type": "city",
+        "prefecture": "山形県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.557339,
+          31.596789
+        ]
+      },
+      "properties": {
+        "name": "鹿児島市",
+        "population": 595000,
+        "type": "city",
+        "prefecture": "鹿児島県"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.745098,
+          36.56712
+        ]
+      },
+      "properties": {
+        "name": "鹿沼市",
+        "population": 94000,
+        "type": "city",
+        "prefecture": "栃木県"
       }
     }
   ]

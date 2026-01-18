@@ -21,6 +21,8 @@ export default function HomePage() {
   const [checkboxLayers, setCheckboxLayers] = useState<Set<string>>(new Set());
   const [showTerrain, setShowTerrain] = useState(false);
   const [showTileBoundaries, setShowTileBoundaries] = useState(false);
+  const [sizeScale, setSizeScale] = useState(1.0); // 円サイズ調整用
+  const [sphereSizeScale, setSphereSizeScale] = useState(1.0); // 球サイズ調整用
 
   const toggleCheckboxLayer = (layerKey: string) => {
     setCheckboxLayers(prev => {
@@ -43,6 +45,8 @@ export default function HomePage() {
           checkboxLayers={checkboxLayers}
           showTerrain={showTerrain}
           showTileBoundaries={showTileBoundaries}
+          sizeScale={sizeScale}
+          sphereSizeScale={sphereSizeScale}
         />
       </main>
 
@@ -57,6 +61,10 @@ export default function HomePage() {
           onTerrainChange={setShowTerrain}
           showTileBoundaries={showTileBoundaries}
           onTileBoundariesChange={setShowTileBoundaries}
+          sizeScale={sizeScale}
+          onSizeScaleChange={setSizeScale}
+          sphereSizeScale={sphereSizeScale}
+          onSphereSizeScaleChange={setSphereSizeScale}
         />
       </div>
     </div>

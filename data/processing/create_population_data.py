@@ -3,11 +3,16 @@
 
 都道府県・市区町村の人口データを取得し、
 円表示用（Point）と3D表示用（Polygon）の両方に対応したGeoJSONを生成
+
+3万人以上の全市区町村を網羅的に含む
 """
 
 import json
 import requests
 from pathlib import Path
+
+# 3万人以上の市区町村データをインポート
+from fetch_city_population import CITY_POPULATION_30K_PLUS
 
 # 2024年10月1日時点の都道府県人口データ（総務省統計局）
 # center座標は各都道府県庁の正確な位置（世界測地系）
@@ -61,57 +66,12 @@ PREFECTURE_POPULATION = {
     "沖縄県": {"population": 1467000, "center": [127.68111, 26.21250]},  # 沖縄県庁
 }
 
-# 主要市区町村の人口データ（政令指定都市+東京23区）
+# 主要市区町村の人口データ（人口3万人以上の市区町村）
 # center座標は各市役所・区役所の所在地
-CITY_POPULATION = {
-    "札幌市": {"population": 1974000, "center": [141.3469, 43.0618], "prefecture": "北海道"},  # 札幌市役所
-    "仙台市": {"population": 1097000, "center": [140.8694, 38.2682], "prefecture": "宮城県"},  # 仙台市役所
-    "さいたま市": {"population": 1328000, "center": [139.6566, 35.8617], "prefecture": "埼玉県"},  # さいたま市役所
-    "千葉市": {"population": 981000, "center": [140.1062, 35.6047], "prefecture": "千葉県"},  # 千葉市役所
+# fetch_city_population.pyからインポートされたデータを使用
+CITY_POPULATION = CITY_POPULATION_30K_PLUS
 
-    # 東京23区
-    "千代田区": {"population": 68000, "center": [139.7536, 35.6940], "prefecture": "東京都"},  # 千代田区役所
-    "中央区": {"population": 172000, "center": [139.7717, 35.6706], "prefecture": "東京都"},  # 中央区役所
-    "港区": {"population": 261000, "center": [139.7514, 35.6581], "prefecture": "東京都"},  # 港区役所
-    "新宿区": {"population": 350000, "center": [139.7036, 35.6938], "prefecture": "東京都"},  # 新宿区役所
-    "文京区": {"population": 235000, "center": [139.7519, 35.7081], "prefecture": "東京都"},  # 文京区役所
-    "台東区": {"population": 211000, "center": [139.7797, 35.7072], "prefecture": "東京都"},  # 台東区役所
-    "墨田区": {"population": 283000, "center": [139.8050, 35.7100], "prefecture": "東京都"},  # 墨田区役所
-    "江東区": {"population": 527000, "center": [139.8172, 35.6731], "prefecture": "東京都"},  # 江東区役所
-    "品川区": {"population": 416000, "center": [139.7303, 35.6092], "prefecture": "東京都"},  # 品川区役所
-    "目黒区": {"population": 288000, "center": [139.6983, 35.6419], "prefecture": "東京都"},  # 目黒区役所
-    "大田区": {"population": 738000, "center": [139.7161, 35.5614], "prefecture": "東京都"},  # 大田区役所
-    "世田谷区": {"population": 939000, "center": [139.6531, 35.6464], "prefecture": "東京都"},  # 世田谷区役所
-    "渋谷区": {"population": 239000, "center": [139.7036, 35.6636], "prefecture": "東京都"},  # 渋谷区役所
-    "中野区": {"population": 344000, "center": [139.6636, 35.7075], "prefecture": "東京都"},  # 中野区役所
-    "杉並区": {"population": 589000, "center": [139.6364, 35.6997], "prefecture": "東京都"},  # 杉並区役所
-    "豊島区": {"population": 294000, "center": [139.7158, 35.7322], "prefecture": "東京都"},  # 豊島区役所
-    "北区": {"population": 358000, "center": [139.7333, 35.7539], "prefecture": "東京都"},  # 北区役所
-    "荒川区": {"population": 218000, "center": [139.7836, 35.7361], "prefecture": "東京都"},  # 荒川区役所
-    "板橋区": {"population": 580000, "center": [139.7086, 35.7511], "prefecture": "東京都"},  # 板橋区役所
-    "練馬区": {"population": 752000, "center": [139.6519, 35.7353], "prefecture": "東京都"},  # 練馬区役所
-    "足立区": {"population": 695000, "center": [139.8044, 35.7756], "prefecture": "東京都"},  # 足立区役所
-    "葛飾区": {"population": 464000, "center": [139.8483, 35.7436], "prefecture": "東京都"},  # 葛飾区役所
-    "江戸川区": {"population": 697000, "center": [139.8681, 35.7072], "prefecture": "東京都"},  # 江戸川区役所
 
-    "横浜市": {"population": 3773000, "center": [139.6380, 35.4478], "prefecture": "神奈川県"},  # 横浜市役所
-    "川崎市": {"population": 1538000, "center": [139.7025, 35.5308], "prefecture": "神奈川県"},  # 川崎市役所
-    "相模原市": {"population": 725000, "center": [139.3761, 35.5561], "prefecture": "神奈川県"},  # 相模原市役所
-    "新潟市": {"population": 779000, "center": [139.0364, 37.9161], "prefecture": "新潟県"},  # 新潟市役所
-    "静岡市": {"population": 689000, "center": [138.3831, 34.9756], "prefecture": "静岡県"},  # 静岡市役所
-    "浜松市": {"population": 789000, "center": [137.7261, 34.7108], "prefecture": "静岡県"},  # 浜松市役所
-    "名古屋市": {"population": 2332000, "center": [136.9067, 35.1802], "prefecture": "愛知県"},  # 名古屋市役所
-    "京都市": {"population": 1463000, "center": [135.7681, 35.0116], "prefecture": "京都府"},  # 京都市役所
-    "大阪市": {"population": 2755000, "center": [135.5022, 34.6937], "prefecture": "大阪府"},  # 大阪市役所
-    "堺市": {"population": 820000, "center": [135.4828, 34.5733], "prefecture": "大阪府"},  # 堺市役所
-    "神戸市": {"population": 1518000, "center": [135.1955, 34.6901], "prefecture": "兵庫県"},  # 神戸市役所
-    "岡山市": {"population": 721000, "center": [133.9192, 34.6551], "prefecture": "岡山県"},  # 岡山市役所
-    "広島市": {"population": 1201000, "center": [132.4595, 34.3853], "prefecture": "広島県"},  # 広島市役所
-    "北九州市": {"population": 922000, "center": [130.8754, 33.8834], "prefecture": "福岡県"},  # 北九州市役所
-    "福岡市": {"population": 1633000, "center": [130.4017, 33.5904], "prefecture": "福岡県"},  # 福岡市役所
-    "熊本市": {"population": 738000, "center": [130.7414, 32.8032], "prefecture": "熊本県"},  # 熊本市役所
-    "熊本市": {"population": 738000, "center": [130.7414, 32.8032], "prefecture": "熊本県"},  # 熊本市役所
-}
 
 
 def create_circle_geojson(data_dict, data_type):
