@@ -254,3 +254,8 @@ pnpm run deploy
 cd frontend
 vercel deploy
 ```
+
+|人口 - 全域|円|ドーム|
+|-|-|-|
+|都道府県|□|□|
+|市区町村|□|□|

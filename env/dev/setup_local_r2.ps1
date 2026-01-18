@@ -15,6 +15,8 @@ Write-Host "[1/3] ディレクトリ構成を確認..." -ForegroundColor Yellow
 $backendDir = "backend"
 $localR2Dir = "$backendDir\.wrangler\state\v3\r2\japan-geographic-geojson"
 $sourceDataDir = "data\geojson"
+$frontendPublicDir = "frontend\public"
+$populationScriptDir = "data\processing"
 
 if (-not (Test-Path $backendDir)) {
     Write-Host "  ✗ backendディレクトリが見つかりません" -ForegroundColor Red
@@ -29,7 +31,34 @@ if (-not (Test-Path $sourceDataDir)) {
 Write-Host "  ✓ ディレクトリ構成OK" -ForegroundColor Green
 
 Write-Host ""
-Write-Host "[2/3] ローカルR2ストレージディレクトリを作成..." -ForegroundColor Yellow
+Write-Host "[2/5] 人口データを生成..." -ForegroundColor Yellow
+
+# Pythonがインストールされているか確認
+try {
+    $pythonVersion = python --version 2>&1
+    Write-Host "  ✓ Python検出: $pythonVersion" -ForegroundColor Green
+
+    # 人口データ生成スクリプトを実行
+    Push-Location $populationScriptDir
+    python create_population_data.py
+    $exitCode = $LASTEXITCODE
+    Pop-Location
+
+    if ($exitCode -eq 0) {
+        Write-Host "  ✓ 人口データ生成完了" -ForegroundColor Green
+    } else {
+        Write-Host "  ✗ 人口データ生成に失敗しました" -ForegroundColor Red
+        exit 1
+    }
+} catch {
+    Write-Host "  ⚠ Python未検出 - 人口データ生成をスキップ" -ForegroundColor Yellow
+    Write-Host "    人口データを手動で生成する場合:" -ForegroundColor Gray
+    Write-Host "    cd data\processing" -ForegroundColor Cyan
+    Write-Host "    python create_population_data.py" -ForegroundColor Cyan
+}
+
+Write-Host ""
+Write-Host "[3/5] ローカルR2ストレージディレクトリを作成..." -ForegroundColor Yellow
 
 # ローカルR2ディレクトリを作成
 if (-not (Test-Path $localR2Dir)) {
@@ -40,7 +69,7 @@ if (-not (Test-Path $localR2Dir)) {
 }
 
 Write-Host ""
-Write-Host "[3/3] GeoJSONファイルをコピー..." -ForegroundColor Yellow
+Write-Host "[4/5] GeoJSONファイルをコピー..." -ForegroundColor Yellow
 
 $jsonFiles = Get-ChildItem -Path $sourceDataDir -Filter "*.json" -File
 
@@ -62,10 +91,39 @@ foreach ($file in $jsonFiles) {
 }
 
 Write-Host ""
+Write-Host "[5/5] 人口データをfrontend/publicにコピー..." -ForegroundColor Yellow
+
+$populationFiles = @(
+    "population-prefecture-circle.json",
+    "population-prefecture-3d.json",
+    "population-city-circle.json",
+    "population-city-3d.json"
+)
+
+$populationCopiedCount = 0
+foreach ($fileName in $populationFiles) {
+    $sourcePath = Join-Path $frontendPublicDir $fileName
+    if (Test-Path $sourcePath) {
+        try {
+            Copy-Item -Path $sourcePath -Destination $localR2Dir -Force
+            $fileSize = (Get-Item $sourcePath).Length
+            $size = [math]::Round($fileSize / 1KB, 2)
+            Write-Host "  ✓ $fileName ($size KB)" -ForegroundColor Green
+            $populationCopiedCount++
+        } catch {
+            Write-Host "  ✗ $fileName - エラー: $_" -ForegroundColor Red
+        }
+    } else {
+        Write-Host "  ⚠ $fileName が見つかりません" -ForegroundColor Yellow
+    }
+}
+
+Write-Host ""
 Write-Host "================================================" -ForegroundColor Cyan
 Write-Host "セットアップ完了" -ForegroundColor Cyan
 Write-Host "================================================" -ForegroundColor Cyan
-Write-Host "  コピー完了: $copiedCount 個のファイル" -ForegroundColor Green
+Write-Host "  地理データコピー完了: $copiedCount 個のファイル" -ForegroundColor Green
+Write-Host "  人口データコピー完了: $populationCopiedCount 個のファイル" -ForegroundColor Green
 Write-Host ""
 
 Write-Host "注意事項:" -ForegroundColor Yellow

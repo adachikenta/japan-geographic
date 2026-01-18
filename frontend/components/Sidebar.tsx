@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { OVERLAY_LAYERS, CHECKBOX_LAYERS } from '@/lib/mapLayers';
+import { OVERLAY_LAYERS, CHECKBOX_LAYERS, POPULATION_CHECKBOX_LAYERS } from '@/lib/mapLayers';
 
 interface SidebarProps {
   overlayLayer: string;
@@ -75,33 +75,43 @@ export default function Sidebar({
           </div>
 
           {/* タブナビゲーション */}
-          <div className="flex border-b border-white/20">
+          <div className="flex justify-start border-b border-white/20">
             <button
               onClick={() => setActiveTab('map')}
               title="レイヤー設定"
-              className={`flex-1 py-2.5 text-xl transition-colors ${
+              className={`flex items-center gap-2 px-4 py-2 text-sm transition-colors ${
                 activeTab === 'map' ? 'bg-white/15 border-b-2 border-white' : 'hover:bg-white/5'
               }`}
             >
-              🗺️
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+              <span>レイヤー</span>
             </button>
             <button
               onClick={() => setActiveTab('settings')}
               title="設定"
-              className={`flex-1 py-2.5 text-xl transition-colors ${
+              className={`flex items-center gap-2 px-4 py-2 text-sm transition-colors ${
                 activeTab === 'settings' ? 'bg-white/15 border-b-2 border-white' : 'hover:bg-white/5'
               }`}
             >
-              ⚙️
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>設定</span>
             </button>
             <button
               onClick={() => setActiveTab('help')}
               title="ヘルプ"
-              className={`flex-1 py-2.5 text-xl transition-colors ${
+              className={`flex items-center gap-2 px-4 py-2 text-sm transition-colors ${
                 activeTab === 'help' ? 'bg-white/15 border-b-2 border-white' : 'hover:bg-white/5'
               }`}
             >
-              ❔
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>ヘルプ</span>
             </button>
           </div>
         </div>
@@ -141,6 +151,11 @@ export default function Sidebar({
             {/* 追加レイヤー */}
             <div className="flex flex-col gap-0.5">
               {Object.entries(CHECKBOX_LAYERS).map(([key, layer]) => {
+                // 人口レイヤーは表形式で表示するのでスキップ
+                if (key.startsWith('population')) {
+                  return null;
+                }
+
                 // terrain と tileBoundaries は特別な処理
                 if (key === 'terrain') {
                   return (
@@ -202,6 +217,65 @@ export default function Sidebar({
                   </label>
                 );
               })}
+            </div>
+
+            {/* 人口レイヤー（表形式） */}
+            <div className="mt-3 bg-white/5 rounded p-2">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-white/20">
+                    <th className="text-left py-1 px-1 font-normal text-white/80">
+                      <span className="text-sm">人口 - 全域</span>
+                    </th>
+                    <th className="text-center py-1 px-1 font-normal text-white/80">円</th>
+                    <th className="text-center py-1 px-1 font-normal text-white/80">ドーム</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-white/10">
+                    <td className="py-1.5 px-1 text-white/90">都道府県</td>
+                    <td className="py-1.5 px-1 text-center">
+                      <input
+                        type="checkbox"
+                        checked={checkboxLayers.has('populationPrefecture')}
+                        onChange={() => onCheckboxLayerToggle('populationPrefecture')}
+                        className="w-4 h-4 text-blue-500 rounded cursor-pointer"
+                        title="都道府県別人口を円の大きさで表現"
+                      />
+                    </td>
+                    <td className="py-1.5 px-1 text-center">
+                      <input
+                        type="checkbox"
+                        checked={checkboxLayers.has('populationPrefecture3d')}
+                        onChange={() => onCheckboxLayerToggle('populationPrefecture3d')}
+                        className="w-4 h-4 text-blue-500 rounded cursor-pointer"
+                        title="都道府県別人口を3D柱状で表現（高負荷）"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="py-1.5 px-1 text-white/90">市区町村</td>
+                    <td className="py-1.5 px-1 text-center">
+                      <input
+                        type="checkbox"
+                        checked={checkboxLayers.has('populationCity')}
+                        onChange={() => onCheckboxLayerToggle('populationCity')}
+                        className="w-4 h-4 text-blue-500 rounded cursor-pointer"
+                        title="主要都市の人口を円の大きさで表現"
+                      />
+                    </td>
+                    <td className="py-1.5 px-1 text-center">
+                      <input
+                        type="checkbox"
+                        checked={checkboxLayers.has('populationCity3d')}
+                        onChange={() => onCheckboxLayerToggle('populationCity3d')}
+                        className="w-4 h-4 text-blue-500 rounded cursor-pointer"
+                        title="主要都市の人口を3D柱状で表現（高負荷）"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         )}
