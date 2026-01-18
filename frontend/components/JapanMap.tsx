@@ -902,22 +902,6 @@ export default function JapanMap({
     const zoom = map.getZoom();
     const zoomScale = Math.pow(2, 5 - zoom); // ズームアウトで大きく、ズームインで小さく
 
-    // 3Dレイヤーが有効ならマップを傾ける
-    const has3dLayers = currentLayers.has('populationPrefecture3d') || currentLayers.has('populationCity3d');
-    if (has3dLayers) {
-      const currentPitch = map.getPitch();
-      if (currentPitch < 30) {
-        map.easeTo({ pitch: 45, duration: 1000 });
-        console.log('🎬 マップを3D視点に変更 (pitch: 45)');
-      }
-    } else {
-      const currentPitch = map.getPitch();
-      if (currentPitch > 0) {
-        map.easeTo({ pitch: 0, duration: 1000 });
-        console.log('🎬 マップを2D視点に戻す (pitch: 0)');
-      }
-    }
-
     // 都道府県3D球体レイヤー
     if (currentLayers.has('populationPrefecture3d') && populationData3d.prefecture3d.length > 0) {
       console.log('🌐 都道府県3D球体レイヤー追加中...', {
