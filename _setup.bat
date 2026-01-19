@@ -10,6 +10,9 @@ cd /d "%~dp0"
 powershell -ExecutionPolicy Bypass -NoLogo -File .\env\dev\setup_env.ps1
 if %ERRORLEVEL% NEQ 0 (goto :catch)
 
+powershell -ExecutionPolicy Bypass -NoLogo -File .\env\dev\setup_python_venv.ps1
+if %ERRORLEVEL% NEQ 0 (goto :catch)
+
 powershell -ExecutionPolicy Bypass -NoLogo -File .\env\dev\setup_packages.ps1
 if %ERRORLEVEL% NEQ 0 (goto :catch)
 

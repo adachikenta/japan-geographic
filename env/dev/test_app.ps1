@@ -1,6 +1,21 @@
 $ErrorActionPreference = "Stop"
 Write-Host "`nRunning tests..." -ForegroundColor Cyan
 
+# Reload environment variables once at the beginning
+Write-Host "Reloading environment variables..." -ForegroundColor Yellow
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+# Verify pnpm is available
+if (-not (Get-Command pnpm -ErrorAction SilentlyContinue)) {
+    Write-Host "Error: pnpm not found in PATH." -ForegroundColor Red
+    Write-Host "Please run the following commands to set up the environment:" -ForegroundColor Yellow
+    Write-Host "  1. _clean.bat" -ForegroundColor Magenta
+    Write-Host "  2. _setup.bat" -ForegroundColor Magenta
+    exit 1
+}
+
+Write-Host "pnpm is available in PATH" -ForegroundColor Green
+
 # Check if frontend and backend directories exist
 $frontendPath = ".\frontend"
 $backendPath = ".\backend"

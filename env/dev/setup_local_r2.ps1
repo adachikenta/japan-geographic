@@ -33,28 +33,39 @@ Write-Host "  ✓ ディレクトリ構成OK" -ForegroundColor Green
 Write-Host ""
 Write-Host "[2/5] 人口データを生成..." -ForegroundColor Yellow
 
-# Pythonがインストールされているか確認
-try {
-    $pythonVersion = python --version 2>&1
-    Write-Host "  ✓ Python検出: $pythonVersion" -ForegroundColor Green
+# Check and activate Python virtual environment
+$checkVenvScript = ".\env\dev\check_venv.ps1"
+if (-not (Test-Path $checkVenvScript)) {
+    Write-Host "  ✗ check_venv.ps1 not found" -ForegroundColor Red
+    Write-Host "  ⚠ Skipping population data generation" -ForegroundColor Yellow
+} else {
+    try {
+        # Check if venv exists and activate it
+        . $checkVenvScript -ActivateVenv
 
-    # 人口データ生成スクリプトを実行
-    Push-Location $populationScriptDir
-    python create_population_data.py
-    $exitCode = $LASTEXITCODE
-    Pop-Location
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "  ✓ Virtual environment activated" -ForegroundColor Green
 
-    if ($exitCode -eq 0) {
-        Write-Host "  ✓ 人口データ生成完了" -ForegroundColor Green
-    } else {
-        Write-Host "  ✗ 人口データ生成に失敗しました" -ForegroundColor Red
-        exit 1
+            # Run population data generation script
+            Push-Location $populationScriptDir
+            python create_population_data.py
+            $exitCode = $LASTEXITCODE
+            Pop-Location
+
+            if ($exitCode -eq 0) {
+                Write-Host "  ✓ 人口データ生成完了" -ForegroundColor Green
+            } else {
+                Write-Host "  ✗ 人口データ生成に失敗しました" -ForegroundColor Red
+                exit 1
+            }
+        } else {
+            Write-Host "  ✗ Virtual environment check failed" -ForegroundColor Red
+            Write-Host "  ⚠ Skipping population data generation" -ForegroundColor Yellow
+        }
+    } catch {
+        Write-Host "  ✗ Error activating virtual environment: $_" -ForegroundColor Red
+        Write-Host "  ⚠ Skipping population data generation" -ForegroundColor Yellow
     }
-} catch {
-    Write-Host "  ⚠ Python未検出 - 人口データ生成をスキップ" -ForegroundColor Yellow
-    Write-Host "    人口データを手動で生成する場合:" -ForegroundColor Gray
-    Write-Host "    cd data\processing" -ForegroundColor Cyan
-    Write-Host "    python create_population_data.py" -ForegroundColor Cyan
 }
 
 Write-Host ""
