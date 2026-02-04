@@ -55,7 +55,7 @@ if (`$LASTEXITCODE -ne 0) {
 }
 "@
 
-    Start-Process pwsh -ArgumentList "-NoExit", "-Command", $scriptBlock
+    Start-Process powershell -ArgumentList "-NoExit", "-Command", $scriptBlock
 }
 
 # Start backend server (Hono + Cloudflare Workers)
