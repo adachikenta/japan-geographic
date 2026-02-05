@@ -57,22 +57,6 @@ Deployment: Vercel (Next.jsネイティブ・自動Edge最適化)
 
 ### セットアップ手順
 
-#### 0. (オプション) Python Flask遺産のクリーンアップ
-
-既存のPython Flask関連ファイルを削除する場合：
-
-```powershell
-.\env\dev\cleanup_python.ps1
-```
-
-このスクリプトは以下を削除します：
-
-- app.py (Flaskアプリケーション)
-- templates/ (Jinja2テンプレート)
-- tests/*.py (Pythonテスト)
-- requirements.txt, pytest.ini, babel.cfg
-- Python専用スクリプト
-
 #### 1. 初期環境構築
 
 リポジトリをクローン後、以下のコマンドを実行します。
